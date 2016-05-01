@@ -70,3 +70,5 @@ ifeq "$(PLATFORM)" "MacOSX"
 endif
 
 include $(BUILD_INC)/Makefile.inc
+
+../Common/Pkcs5.o: CFLAGS += -Wno-extra -Wno-conversion

@@ -93,12 +93,12 @@ endif
 
 ifeq "$(TC_BUILD_CONFIG)" "Release"
 
-CXXFLAGS += $(shell $(WX_CONFIG) $(WX_CONFIG_ARGS) --cxxflags)
+CXXFLAGS += $(patsubst -I%, -isystem%, $(shell $(WX_CONFIG) $(WX_CONFIG_ARGS) --cxxflags))
 WX_LIBS = $(shell $(WX_CONFIG) $(WX_CONFIG_ARGS) --libs $(WX_CONFIG_LIBS))
 
 else
 
-CXXFLAGS += $(shell $(WX_CONFIG) --debug $(WX_CONFIG_ARGS) --cxxflags)
+CXXFLAGS += $(patsubst -I%, -isystem%, $(shell $(WX_CONFIG) --debug $(WX_CONFIG_ARGS) --cxxflags))
 WX_LIBS = $(shell $(WX_CONFIG) --debug $(WX_CONFIG_ARGS) --libs $(WX_CONFIG_LIBS))
 
 endif
