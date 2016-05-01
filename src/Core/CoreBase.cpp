@@ -141,7 +141,7 @@ namespace VeraCrypt
 
 	uint64 CoreBase::GetMaxHiddenVolumeSize (shared_ptr <Volume> outerVolume) const
 	{
-		uint32 sectorSize = outerVolume->GetSectorSize();
+		size_t sectorSize = outerVolume->GetSectorSize();
 
 		SecureBuffer bootSectorBuffer (sectorSize);
 		outerVolume->ReadSectors (bootSectorBuffer, 0);
@@ -158,7 +158,7 @@ namespace VeraCrypt
 		else
 			throw ParameterIncorrect (SRC_POS);
 
-		uint32 clusterSize = bootSector[13] * sectorSize;
+		size_t clusterSize = bootSector[13] * sectorSize;
 		uint32 reservedSectorCount = Endian::Little (*(uint16 *) (bootSector + 14));
 		uint32 fatCount = bootSector[16];
 
@@ -184,8 +184,11 @@ namespace VeraCrypt
 		{
 			outerVolume->ReadSectors (sector, readOffset);
 
-			for (int offset = sectorSize - 4; offset >= 0; offset -= 4)
+			size_t offset = sectorSize;
+			while (offset >= 4)
 			{
+				offset -= 4;
+
 				if (*(uint32 *) (sector.Ptr() + offset))
 				{
 					uint64 clusterNumber = readOffset - fatStartOffset + offset;

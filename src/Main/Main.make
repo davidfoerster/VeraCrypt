@@ -237,4 +237,6 @@ $(OBJS): $(PCH)
 
 Resources.o: $(RESOURCES)
 
+Forms/Forms.o: CXXFLAGS+=-Wno-conversion
+
 include $(BUILD_INC)/Makefile.inc

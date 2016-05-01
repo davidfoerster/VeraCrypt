@@ -110,7 +110,7 @@ namespace VeraCrypt
 
 	void WizardFrame::SetMaxStaticTextWidth (size_t charCount)
 	{
-		MaxStaticTextWidth = Gui->GetCharWidth (this) * charCount;
+		MaxStaticTextWidth = Gui->GetCharWidth (this) * static_cast<int>(charCount);
 	}
 
 	void WizardFrame::SetStep (WizardStep newStep)

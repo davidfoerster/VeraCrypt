@@ -59,7 +59,7 @@ namespace VeraCrypt
 
 		for (size_t i = 0; i < data.Size(); ++i)
 		{
-			Pool[WriteOffset++] += data[i];
+			add_coerced(Pool[WriteOffset++], data[i]);
 
 			if (WriteOffset >= PoolSize)
 				WriteOffset = 0;
@@ -101,7 +101,7 @@ namespace VeraCrypt
 			// Transfer bytes from pool to output buffer
 			for (size_t i = 0; i < loopLen; ++i)
 			{
-				pbBuffer[i] += Pool[ReadOffset++];
+				add_coerced(pbBuffer[i], Pool[ReadOffset++]);
 
 				if (ReadOffset >= PoolSize)
 					ReadOffset = 0;
@@ -110,7 +110,7 @@ namespace VeraCrypt
 			// Invert and mix the pool
 			for (size_t i = 0; i < Pool.Size(); ++i)
 			{
-				Pool[i] = ~Pool[i];
+				Pool[i] = static_cast<byte>(~Pool[i]);
 			}
 
 			AddSystemDataToPool (true);
@@ -119,7 +119,7 @@ namespace VeraCrypt
 			// XOR the current pool content into the output buffer to prevent pool state leaks
 			for (size_t i = 0; i < loopLen; ++i)
 			{
-				pbBuffer[i] ^= Pool[ReadOffset++];
+				pbBuffer[i] = static_cast<byte>(pbBuffer[i] ^ Pool[ReadOffset++]);
 
 				if (ReadOffset >= PoolSize)
 					ReadOffset = 0;
@@ -149,7 +149,7 @@ namespace VeraCrypt
 			// Add the message digest to the pool
 			for (size_t digestPos = 0; digestPos < digest.Size() && poolPos < Pool.Size(); ++digestPos)
 			{
-				Pool[poolPos++] += digest[digestPos];
+				add_coerced(Pool[poolPos++], digest[digestPos]);
 			}
 		}
 	}

@@ -660,10 +660,13 @@ namespace VeraCrypt
 
 		int itemState = listCtrl->GetItemState (itemIndex, wxLIST_STATE_SELECTED);
 
-		vector <wstring> itemFields (listCtrl->GetColumnCount());
-		for (size_t col = 0; col < itemFields.size(); ++col)
+		int columnCount = listCtrl->GetColumnCount();
+		vector <wstring> itemFields;
+		itemFields.reserve(columnCount);
+		for (int col = 0; col < columnCount; ++col)
 		{
-			itemFields[col] = GetListCtrlSubItemText (listCtrl, itemIndex, col);
+			itemFields.push_back (wstring (
+				GetListCtrlSubItemText (listCtrl, itemIndex, col)));
 		}
 
 		listCtrl->DeleteItem (itemIndex);
@@ -1690,12 +1693,12 @@ namespace VeraCrypt
 #ifdef TC_MACOSX
 		rowHeight += 1;
 #endif
-		listCtrl->SetMinSize (wxSize (listCtrl->GetMinSize().GetWidth(), rowHeight * rowCount + headerHeight));
+		listCtrl->SetMinSize (wxSize (listCtrl->GetMinSize().GetWidth(), rowHeight * static_cast<int>(rowCount) + headerHeight));
 	}
 
 	void GraphicUserInterface::SetListCtrlWidth (wxListCtrl *listCtrl, size_t charCount, bool hasVerticalScrollbar) const
 	{
-		int width = GetCharWidth (listCtrl) * charCount;
+		int width = GetCharWidth (listCtrl) * static_cast<int>(charCount);
 #ifdef TC_MACOSX
 		if (!hasVerticalScrollbar)
 			width += GetScrollbarWidth (listCtrl);

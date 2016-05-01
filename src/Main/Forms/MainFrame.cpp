@@ -43,7 +43,7 @@ namespace VeraCrypt
 	DEFINE_EVENT_TYPE(wxEVT_COMMAND_UPDATE_VOLUME_LIST)
 	DEFINE_EVENT_TYPE(wxEVT_COMMAND_PREF_UPDATED)
 	DEFINE_EVENT_TYPE(wxEVT_COMMAND_OPEN_VOLUME_REQUEST)
-	DEFINE_EVENT_TYPE(wxEVT_COMMAND_SHOW_WARNING)
+	DEFINE_EVENT_TYPE(wxEVT_COMMAND_SHOW_WARNING TC_UNUSED_VAR)
 
 	MainFrame::MainFrame (wxWindow* parent) : MainFrameBase (parent),
 		ListItemRightClickEventPending (false),
@@ -469,7 +469,8 @@ namespace VeraCrypt
 		{
 			LoadPreferences();
 
-			VolumeSlotNumber lastSelectedSlotNumber = GetPreferences().LastSelectedSlotNumber;
+			VolumeSlotNumber lastSelectedSlotNumber =
+				static_cast<VolumeSlotNumber>(GetPreferences().LastSelectedSlotNumber);
 			if (Core->IsSlotNumberValid (lastSelectedSlotNumber))
 			{
 				long slotIndex = SlotNumberToItemIndex (lastSelectedSlotNumber);
@@ -1641,7 +1642,8 @@ namespace VeraCrypt
 				bool slotUpdated = false;
 				if (itemIndex == -1)
 				{
-					Gui->InsertToListCtrl (SlotListCtrl, ++prevItemIndex, fields, 0, (void *) volume->SlotNumber);
+					Gui->InsertToListCtrl (SlotListCtrl, ++prevItemIndex, fields, 0,
+						reinterpret_cast<void*>(volume->SlotNumber));
 					OnListItemInserted (prevItemIndex);
 
 					listChanged |= true;
@@ -1676,7 +1678,8 @@ namespace VeraCrypt
 				{
 					if (itemIndex == -1)
 					{
-						Gui->InsertToListCtrl (SlotListCtrl, ++prevItemIndex, fields, 0, (void *) slotNumber);
+						Gui->InsertToListCtrl (SlotListCtrl, ++prevItemIndex, fields, 0,
+							reinterpret_cast<void*>(slotNumber));
 						OnListItemInserted (prevItemIndex);
 						listChanged |= true;
 					}

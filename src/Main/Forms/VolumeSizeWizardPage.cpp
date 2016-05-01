@@ -80,7 +80,7 @@ namespace VeraCrypt
 		{
 			val *= prefixMult;
 
-			uint32 sectorSizeRem = val % SectorSize;
+			uint64 sectorSizeRem = val % SectorSize;
 
 			if (sectorSizeRem != 0)
 				val += SectorSize - sectorSizeRem;

@@ -37,14 +37,14 @@ extern "C" {
 typedef void (*SigHandler)(int);
 
 static jmp_buf s_jmpNoCPUID;
-static void SigIllHandlerCPUID(int p)
+static void SigIllHandlerCPUID(int p TC_UNUSED_VAR)
 {
 	longjmp(s_jmpNoCPUID, 1);
 }
 
 #if CRYPTOPP_BOOL_X64 == 0
 static jmp_buf s_jmpNoSSE2;
-static void SigIllHandlerSSE2(int p)
+static void SigIllHandlerSSE2(int p TC_UNUSED_VAR)
 {
 	longjmp(s_jmpNoSSE2, 1);
 }

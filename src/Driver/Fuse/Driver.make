@@ -18,3 +18,5 @@ OBJS += FuseService.o
 CXXFLAGS += $(shell pkg-config fuse --cflags)
 
 include $(BUILD_INC)/Makefile.inc
+
+FuseService.o: CXXFLAGS+=-Wno-error=conversion

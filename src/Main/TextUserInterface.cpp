@@ -612,7 +612,7 @@ namespace VeraCrypt
 		{
 			options->Quick = false;
 
-			uint32 sectorSizeRem = options->Size % options->SectorSize;
+			uint64 sectorSizeRem = options->Size % options->SectorSize;
 			if (sectorSizeRem != 0)
 				options->Size += options->SectorSize - sectorSizeRem;
 
@@ -1601,7 +1601,7 @@ namespace VeraCrypt
 		}
 		else if (!Preferences.NonInteractive)
 		{
-			int randCharsRequired = RandomNumberGenerator::PoolSize;
+			size_t randCharsRequired = RandomNumberGenerator::PoolSize;
 			ShowInfo (StringFormatter (_("\nPlease type at least {0} randomly chosen characters and then press Enter:"), randCharsRequired));
 
 			SetTerminalEcho (false);

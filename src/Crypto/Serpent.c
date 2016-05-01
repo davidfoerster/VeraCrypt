@@ -644,7 +644,7 @@ void serpent_set_key(const unsigned __int8 userKey[],unsigned __int8 *ks)
 	k += 8;
 	t = k[-1];
 	for (i = 0; i < 132; ++i)
-		k[i] = t = rotlFixed(k[i-8] ^ k[i-5] ^ k[i-3] ^ t ^ 0x9e3779b9 ^ i, 11);
+		k[i] = t = rotlFixed(k[i-8] ^ k[i-5] ^ k[i-3] ^ t ^ 0x9e3779b9 ^ (unsigned __int32) i, 11);
 	k -= 20;
 
 #define LK(r, a, b, c, d, e)	{\

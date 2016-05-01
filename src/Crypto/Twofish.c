@@ -91,7 +91,7 @@ static u1byte qp(const u4byte n, const u1byte x)
     a2 = qt0[n][a1]; b2 = qt1[n][b1];
     a3 = a2 ^ b2; b3 = ror4[b2] ^ ashx[a2];
     a4 = qt2[n][a3]; b4 = qt3[n][b3];
-    return (b4 << 4) | a4;
+    return (u1byte)(b4 << 4) | a4;
 };
 
 #ifdef  Q_TABLES

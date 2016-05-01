@@ -359,7 +359,9 @@ namespace VeraCrypt
 				dmCreateArgs << StringConverter::ToLower (StringConverter::ToSingle (cipher.GetName())) << (xts ? (SystemInfo::IsVersionAtLeast (2, 6, 33) ? "-xts-plain64 " : "-xts-plain ") : "-lrw-benbi ");
 
 				size_t keyArgOffset = dmCreateArgs.str().size();
-				dmCreateArgs << setw (cipher.GetKeySize() * (xts ? 4 : 2) + (xts ? 0 : 16 * 2)) << 0 << setw (0);
+				size_t keyDigits = cipher.GetKeySize() * (xts ? 4 : 2) + (xts ? 0 : 16 * 2);
+				throw_sys_sub_if(keyDigits > INT_MAX, L"key size too large");
+				dmCreateArgs << setw (static_cast<int>(keyDigits)) << 0 << setw (0);
 
 				// Sector and data unit offset
 				uint64 startSector = volume->GetLayout()->GetDataOffset (volume->GetHostSize()) / ENCRYPTION_DATA_UNIT_SIZE;

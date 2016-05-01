@@ -724,7 +724,7 @@ namespace VeraCrypt
 
 				if (forward
 					&& !OuterVolume && SelectedVolumeType == VolumeType::Hidden
-					&& (double) VolumeSize / MaxHiddenVolumeSize > 0.85)
+					&& static_cast<double>(VolumeSize) / static_cast<double>(MaxHiddenVolumeSize) > 0.85)
 				{
 					if (!Gui->AskYesNo (LangString["FREE_SPACE_FOR_WRITING_TO_OUTER_VOLUME"]))
 						return GetCurrentStep();

@@ -30,7 +30,7 @@ namespace VeraCrypt
 				VolumeSlotNumber slotNumber = 0;
 				wstring attr = wstring (node.Attributes[L"slotnumber"]);
 				if (!attr.empty())
-					slotNumber = StringConverter::ToUInt64 (attr);
+					slotNumber = StringConverter::ToUInt32 (attr);
 
 				bool readOnly = false;
 				attr = wstring (node.Attributes[L"readonly"]);

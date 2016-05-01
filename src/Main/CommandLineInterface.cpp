@@ -534,10 +534,17 @@ namespace VeraCrypt
 
 		if (parser.Found (L"slot", &str))
 		{
-			unsigned long number;
-			if (!str.ToULong (&number) || number < Core->GetFirstSlotNumber() || number > Core->GetLastSlotNumber())
+			unsigned long lNumber;
+			unsigned number;
+			if (!str.ToULong (&lNumber) ||
+				lNumber > UINT_MAX ||
+				lNumber < Core->GetFirstSlotNumber() ||
+				lNumber > Core->GetLastSlotNumber())
+			{
 				throw_err (LangString["PARAMETER_INCORRECT"] + L": " + str);
+			}
 
+			number = static_cast<unsigned>(lNumber);
 			ArgMountOptions.SlotNumber = number;
 
 			if (param1IsMountedVolumeSpec)

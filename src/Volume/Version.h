@@ -21,8 +21,8 @@ namespace VeraCrypt
 	class Version
 	{
 	public:
-		static const string String ()					{ return VERSION_STRING; }
-		static const uint16 Number ()					{ return VERSION_NUM; }
+		static string String ()					{ return VERSION_STRING; }
+		static uint16 Number ()					{ return VERSION_NUM; }
 	};
 }
 

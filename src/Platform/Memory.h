@@ -150,7 +150,7 @@ namespace VeraCrypt
 	protected:
 		static uint16 MirrorBytes (const uint16 &x)
 		{
-			return (x << 8) | (x >> 8);
+			return static_cast<uint16>(x << 8) | static_cast<uint16>(x >> 8);
 		}
 
 		static uint32 MirrorBytes (const uint32 &x)

@@ -127,7 +127,7 @@ extern "C"
 
 #if defined(SWAP_BYTES)
 #define bsw_32(p,n) \
-    { int _i = (n); while(_i--) ((uint_32t*)p)[_i] = bswap_32(((uint_32t*)p)[_i]); }
+    { uint_32t _i = (n); while(_i--) ((uint_32t*)p)[_i] = bswap_32(((uint_32t*)p)[_i]); }
 #else
 #define bsw_32(p,n)
 #endif
@@ -292,7 +292,8 @@ VOID_RETURN sha256_hash(const unsigned char data[], unsigned long len, sha256_ct
              space = SHA256_BLOCK_SIZE - pos;
     const unsigned char *sp = data;
 
-    if((ctx->count[0] += len) < len)
+    ctx->count[0] = (uint_32t) (ctx->count[0] + len);
+    if(ctx->count[0] < len)
         ++(ctx->count[1]);
 
     while(len >= space)     /* tranfer whole blocks while possible  */
@@ -320,8 +321,8 @@ static void sha_end1(unsigned char hval[], sha256_ctx ctx[1], const unsigned int
     /* a single 1 bit and as many zero bits as necessary. Note that */
     /* we can always add the first padding byte here because the    */
     /* buffer always has at least one empty slot                    */
-    ctx->wbuf[i >> 2] &= 0xffffff80 << 8 * (~i & 3);
-    ctx->wbuf[i >> 2] |= 0x00000080 << 8 * (~i & 3);
+    ctx->wbuf[i >> 2] &= 0xffffff80U << 8 * (~i & 3);
+    ctx->wbuf[i >> 2] |= 0x00000080U << 8 * (~i & 3);
 
     /* we need 9 or more empty positions, one for the padding byte  */
     /* (above) and eight for the length count.  If there is not     */
@@ -418,7 +419,7 @@ VOID_RETURN sha256(unsigned char hval[], const unsigned char data[], unsigned lo
 
 #if defined(SWAP_BYTES)
 #define bsw_64(p,n) \
-    { int _i = (n); while(_i--) ((uint_64t*)p)[_i] = bswap_64(((uint_64t*)p)[_i]); }
+    { uint_32t _i = (n); while(_i--) ((uint_64t*)p)[_i] = bswap_64(((uint_64t*)p)[_i]); }
 #else
 #define bsw_64(p,n)
 #endif

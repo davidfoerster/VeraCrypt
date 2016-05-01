@@ -77,18 +77,21 @@ namespace VeraCrypt
 #define TC_JOIN(a,b) TC_JOIN_ARGS(a,b)
 
 #ifdef __GNUC__
-	template <class T> string GetFunctionName (T pos)
+namespace
+{
+	string GetFunctionName (const char *pos)
 	{
 		string s (pos);
 		size_t p = s.find ('(');
 		if (p == string::npos)
 			return s;
 		s = s.substr (0, p);
-		p = s.find_last_of (" ");
+		p = s.find_last_of (' ');
 		if (p == string::npos)
 			return s;
 		return s.substr (p + 1);
 	}
+}
 #	define SRC_POS (GetFunctionName (__PRETTY_FUNCTION__) += ":" TC_TO_STRING(__LINE__))
 #	define TC_UNUSED_VAR __attribute__ ((unused))
 #else
@@ -133,6 +136,23 @@ namespace VeraCrypt
 
 #define trace_val(VAL) trace_msg (#VAL << '=' << (VAL));
 
-#define array_capacity(arr) (sizeof (arr) / sizeof ((arr)[0]))
+namespace
+{
+	template <class T, size_t Size>
+	inline size_t array_capacity( const T (&)[Size] )
+	{
+		return Size;
+	}
+
+	template <class T, class U>
+	inline T add_coerced (T &var, U increment)
+	{
+		var = static_cast<T>(var + static_cast<T>(increment));
+		return var;
+	}
+
+	template <class T>
+	inline void ignore_result( const T & ) { }
+}
 
 #endif // TC_HEADER_Platform_PlatformBase

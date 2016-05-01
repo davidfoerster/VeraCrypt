@@ -577,18 +577,18 @@ static int IsBitSet64 (unsigned int bit, unsigned __int8 *a)
 
 static void SetBit128 (unsigned int bit, unsigned __int8 *a)
 {
-	a[(127 - bit) / 8] |= 0x80 >> ((127 - bit) % 8);
+	a[(127 - bit) / 8] |= (unsigned __int8)(0x80 >> ((127 - bit) % 8));
 }
 
 static void SetBit64 (unsigned int bit, unsigned __int8 *a)
 {
-	a[(63 - bit) / 8] |= 0x80 >> ((63 - bit) % 8);
+	a[(63 - bit) / 8] |= (unsigned __int8)(0x80 >> ((63 - bit) % 8));
 }
 
 void MirrorBits128 (unsigned __int8 *a)
 {
 	unsigned __int8 t[128 / 8];
-	int i;
+	unsigned i;
 	memset (t,0,16);
 	for (i = 0; i < 128; i++)
 	{
@@ -602,7 +602,7 @@ void MirrorBits128 (unsigned __int8 *a)
 void MirrorBits64 (unsigned __int8 *a)
 {
 	unsigned __int8 t[64 / 8];
-	int i;
+	unsigned i;
 	memset (t,0,8);
 	for (i = 0; i < 64; i++)
 	{
@@ -697,14 +697,14 @@ static void shl128 (unsigned __int8 *a)
 	for (i = 15; i >= 0; i--)
 	{
 		xx = (a[i] & 0x80) >> 7;
-		a[i] = (char) ((a[i] << 1) | x);
+		a[i] = (unsigned __int8) ((a[i] << 1) | x);
 		x = xx;
 	}
 }
 
 static void GfMul128Basic (unsigned __int8 *a, unsigned __int8 *b, unsigned __int8 *p)
 {
-	int i;
+	unsigned i;
 	unsigned __int8 la[16];
 	memcpy (la, a, 16);
 	memset (p, 0, 16);

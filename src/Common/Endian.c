@@ -17,7 +17,7 @@
 
 unsigned __int16 MirrorBytes16 (unsigned __int16 x)
 {
-	return (x << 8) | (x >> 8);
+	return (unsigned __int16)(x << 8) | (unsigned __int16)(x >> 8);
 }
 
 
@@ -52,8 +52,8 @@ LongReverse (unsigned __int32 *buffer, unsigned byteCount)
 	while (byteCount--)
 	{
 		value = *buffer;
-		value = ((value & 0xFF00FF00L) >> 8) | \
-		    ((value & 0x00FF00FFL) << 8);
+		value = ((value & (unsigned __int32) 0xFF00FF00UL) >> 8) | \
+		    ((value & (unsigned __int32) 0x00FF00FFUL) << 8);
 		*buffer++ = (value << 16) | (value >> 16);
 	}
 }

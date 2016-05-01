@@ -587,16 +587,18 @@ namespace VeraCrypt
 		Sessions[slotId].Handle = session;
 	}
 
+	struct ErrorStringsT
+	{
+		CK_RV ErrorCode;
+		const char *ErrorString;
+	};
+
 	Pkcs11Exception::operator string () const
 	{
 		if (ErrorCode == CKR_OK)
 			return string();
 
-		static const struct
-		{
-			CK_RV ErrorCode;
-			const char *ErrorString;
-		} ErrorStrings[] =
+		static const ErrorStringsT ErrorStrings[] =
 		{
 #			define TC_TOKEN_ERR(CODE) { CODE, #CODE },
 
@@ -698,7 +700,7 @@ namespace VeraCrypt
 		}
 
 		stringstream s;
-		s << "0x" << hex << ErrorCode;
+		s << hex << showbase << ErrorCode;
 		return s.str();
 
 	}

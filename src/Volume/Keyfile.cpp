@@ -45,10 +45,10 @@ namespace VeraCrypt
 			{
 				uint32 crc = crc32.Process (keyfileData[i]);
 
-				pool[poolPos++] += (byte) (crc >> 24);
-				pool[poolPos++] += (byte) (crc >> 16);
-				pool[poolPos++] += (byte) (crc >> 8);
-				pool[poolPos++] += (byte) crc;
+				add_coerced(pool[poolPos++], crc >> 24);
+				add_coerced(pool[poolPos++], crc >> 16);
+				add_coerced(pool[poolPos++], crc >> 8);
+				add_coerced(pool[poolPos++], crc);
 
 				if (poolPos >= pool.Size())
 					poolPos = 0;
@@ -69,10 +69,10 @@ namespace VeraCrypt
 			{
 				uint32 crc = crc32.Process (keyfileBuf[i]);
 
-				pool[poolPos++] += (byte) (crc >> 24);
-				pool[poolPos++] += (byte) (crc >> 16);
-				pool[poolPos++] += (byte) (crc >> 8);
-				pool[poolPos++] += (byte) crc;
+				add_coerced(pool[poolPos++], crc >> 24);
+				add_coerced(pool[poolPos++], crc >> 16);
+				add_coerced(pool[poolPos++], crc >> 8);
+				add_coerced(pool[poolPos++], crc);
 
 				if (poolPos >= pool.Size())
 					poolPos = 0;

@@ -79,7 +79,7 @@ namespace VeraCrypt
 				ft->cluster_size = 1;
 
 			if (ft->cluster_size * ft->sector_size > TC_MAX_FAT_CLUSTER_SIZE)
-				ft->cluster_size = TC_MAX_FAT_CLUSTER_SIZE / ft->sector_size;
+				ft->cluster_size = (uint32)(TC_MAX_FAT_CLUSTER_SIZE / ft->sector_size);
 
 			if (ft->cluster_size > 128)
 				ft->cluster_size = 128;

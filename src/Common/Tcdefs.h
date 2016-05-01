@@ -35,7 +35,8 @@
 
 /* GUI/driver errors */
 
-#define WIDE(x) (LPWSTR)L##x
+#define __WIDE2(x) L ## x
+#define WIDE(x) __WIDE2(x)
 
 #ifdef _MSC_VER
 
@@ -233,17 +234,18 @@ typedef int BOOL;
 #	define TC_WAIT_EVENT(EVENT) WaitForSingleObject (EVENT, INFINITE)
 #endif
 
+
 #ifdef _WIN32
 #define burn(mem,size) do { volatile char *burnm = (volatile char *)(mem); size_t burnc = size; RtlSecureZeroMemory (mem, size); while (burnc--) *burnm++ = 0; } while (0)
 #else
-#define burn(mem,size) do { volatile char *burnm = (volatile char *)(mem); int burnc = size; while (burnc--) *burnm++ = 0; } while (0)
+#define burn(mem,size) do { volatile char *burnm = (volatile char *)(mem); size_t burnc = size; while (burnc--) *burnm++ = 0; } while (0)
 #endif
 
 // The size of the memory area to wipe is in bytes amd it must be a multiple of 8.
 #ifndef TC_NO_COMPILER_INT64
-#	define FAST_ERASE64(mem,size) do { volatile uint64 *burnm = (volatile uint64 *)(mem); int burnc = size >> 3; while (burnc--) *burnm++ = 0; } while (0)
+#	define FAST_ERASE64(mem,size) do { volatile uint64 *burnm = (volatile uint64 *)(mem); size_t burnc = size / sizeof(*burnm); while (burnc--) *burnm++ = 0; } while (0)
 #else
-#	define FAST_ERASE64(mem,size) do { volatile unsigned __int32 *burnm = (volatile unsigned __int32 *)(mem); int burnc = size >> 2; while (burnc--) *burnm++ = 0; } while (0)
+#	define FAST_ERASE64(mem,size) do { volatile unsigned __int32 *burnm = (volatile unsigned __int32 *)(mem); size_t burnc = size / sizeof(*burnm); while (burnc--) *burnm++ = 0; } while (0)
 #endif
 
 #ifdef TC_WINDOWS_BOOT

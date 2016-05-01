@@ -4,6 +4,12 @@
 #include "config.h"
 #include <string.h>		// for memcpy and memmove
 
+#ifdef __GNUC__
+#	define TC_UNUSED_VAR __attribute__ ((unused))
+#else
+#	define TC_UNUSED_VAR
+#endif
+
 #ifdef _MSC_VER
 	#if _MSC_VER >= 1400
 		#ifndef TC_WINDOWS_DRIVER

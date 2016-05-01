@@ -593,7 +593,8 @@ namespace VeraCrypt
 				{
 					try
 					{
-						chown (mountPoint.c_str(), GetRealUserId(), GetRealGroupId());
+						 ignore_result(
+						 	chown (mountPoint.c_str(), GetRealUserId(), GetRealGroupId()));
 					} catch (...) { }
 				}
 			}

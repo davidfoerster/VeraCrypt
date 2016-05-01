@@ -13,6 +13,8 @@
 #include "System.h"
 #include <set>
 #include <typeinfo>
+#include <iomanip>
+#include <cmath>
 #include <wx/apptrait.h>
 #include <wx/cmdline.h>
 #include "Crypto/cpu.h"
@@ -1383,58 +1385,61 @@ namespace VeraCrypt
 			DoShowError (ExceptionToMessage (ex));
 	}
 
+	namespace
+	{
+		wostream &FormatSize(wostream &s, uint64 size,
+			const char *const magnitudeStrings[], int magnitudeStringsSize)
+		{
+			for (int i = magnitudeStringsSize - 1; i >= 0 ; i--)
+			{
+				int binaryShift = i * 10;
+				uint64 magnitude = 1ULL << binaryShift;
+
+				if (size >= magnitude)
+				{
+					if (i >= 2 && size > magnitude * 99)
+					{
+						s << (size >> binaryShift);
+					}
+					else
+					{
+						s << fixed << setprecision(1)
+							<< ldexp(static_cast<double>(size), -binaryShift);
+					}
+					s << L' ' << LangString[magnitudeStrings[i]];
+					break;
+				}
+			}
+
+			return s;
+		}
+
+		template <int MSSize>
+		inline wostream &FormatSize(wostream &s, uint64 size,
+			const char *const (&magnitudeStrings)[MSSize] )
+		{
+			return FormatSize(s, size, magnitudeStrings, MSSize);
+		}
+	}
+
 	wxString UserInterface::SizeToString (uint64 size) const
 	{
+		static const char *const magnitudeStrings[] = {
+			"BYTE", "KB", "MB", "GB", "TB", "PB"
+		};
 		wstringstream s;
-		if (size > 1024ULL*1024*1024*1024*1024*99)
-			s << size/1024/1024/1024/1024/1024 << L" " << LangString["PB"].c_str();
-		else if (size > 1024ULL*1024*1024*1024*1024)
-			return wxString::Format (L"%.1f %s", (double)(size/1024.0/1024/1024/1024/1024), LangString["PB"].c_str());
-		else if (size > 1024ULL*1024*1024*1024*99)
-			s << size/1024/1024/1024/1024 << L" " << LangString["TB"].c_str();
-		else if (size > 1024ULL*1024*1024*1024)
-			return wxString::Format (L"%.1f %s", (double)(size/1024.0/1024/1024/1024), LangString["TB"].c_str());
-		else if (size > 1024ULL*1024*1024*99)
-			s << size/1024/1024/1024 << L" " << LangString["GB"].c_str();
-		else if (size > 1024ULL*1024*1024)
-			return wxString::Format (L"%.1f %s", (double)(size/1024.0/1024/1024), LangString["GB"].c_str());
-		else if (size > 1024ULL*1024*99)
-			s << size/1024/1024 << L" " << LangString["MB"].c_str();
-		else if (size > 1024ULL*1024)
-			return wxString::Format (L"%.1f %s", (double)(size/1024.0/1024), LangString["MB"].c_str());
-		else if (size > 1024ULL)
-			s << size/1024 << L" " << LangString["KB"].c_str();
-		else
-			s << size << L" " << LangString["BYTE"].c_str();
-
+		FormatSize(s, size, magnitudeStrings);
 		return s.str();
 	}
 
 	wxString UserInterface::SpeedToString (uint64 speed) const
 	{
+		static const char *const magnitudeStrings[] = {
+			"B_PER_SEC", "KB_PER_SEC", "MB_PER_SEC", "GB_PER_SEC", "TB_PER_SEC",
+			"PB_PER_SEC"
+		};
 		wstringstream s;
-
-		if (speed > 1024ULL*1024*1024*1024*1024*99)
-			s << speed/1024/1024/1024/1024/1024 << L" " << LangString["PB_PER_SEC"].c_str();
-		else if (speed > 1024ULL*1024*1024*1024*1024)
-			return wxString::Format (L"%.1f %s", (double)(speed/1024.0/1024/1024/1024/1024), LangString["PB_PER_SEC"].c_str());
-		else if (speed > 1024ULL*1024*1024*1024*99)
-			s << speed/1024/1024/1024/1024 << L" " << LangString["TB_PER_SEC"].c_str();
-		else if (speed > 1024ULL*1024*1024*1024)
-			return wxString::Format (L"%.1f %s", (double)(speed/1024.0/1024/1024/1024), LangString["TB_PER_SEC"].c_str());
-		else if (speed > 1024ULL*1024*1024*99)
-			s << speed/1024/1024/1024 << L" " << LangString["GB_PER_SEC"].c_str();
-		else if (speed > 1024ULL*1024*999)
-			return wxString::Format (L"%.1f %s", (double)(speed/1024.0/1024/1024), LangString["GB_PER_SEC"].c_str());
-		else if (speed > 1024ULL*1024*9)
-			s << speed/1024/1024 << L" " << LangString["MB_PER_SEC"].c_str();
-		else if (speed > 1024ULL*999)
-			return wxString::Format (L"%.1f %s", (double)(speed/1024.0/1024), LangString["MB_PER_SEC"].c_str());
-		else if (speed > 1024ULL)
-			s << speed/1024 << L" " << LangString["KB_PER_SEC"].c_str();
-		else
-			s << speed << L" " << LangString["B_PER_SEC"].c_str();
-
+		FormatSize(s, speed, magnitudeStrings);
 		return s.str();
 	}
 

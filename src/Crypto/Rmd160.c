@@ -171,7 +171,7 @@ static word32 rotlFixed (word32 x, unsigned int y)
 }
 
 #define Subround(f, a, b, c, d, e, x, s, k)        \
-	a += f(b, c, d) + x + k;\
+	a += f(b, c, d) + x + (word32)k;\
 	a = rotlFixed((word32)a, s) + e;\
 	c = rotlFixed((word32)c, 10U)
 
