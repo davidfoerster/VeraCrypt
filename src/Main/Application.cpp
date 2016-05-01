@@ -161,6 +161,14 @@ namespace VeraCrypt
 		}
 	}
 
+	const wstring &Application::GetName ()
+	{
+		static wxScopedPtr<const wstring> appName;
+		if (!appName)
+			appName.reset(new wstring(WIDE(TC_APP_NAME)));
+		return *appName;
+	}
+
 	int Application::ExitCode = 0;
 	UserInterface *Application::mUserInterface = nullptr;
 	UserInterfaceType::Enum Application::mUserInterfaceType;
