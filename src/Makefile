@@ -39,11 +39,11 @@ export CXX ?= g++
 export AS := nasm
 export RANLIB ?= ranlib
 
-export CFLAGS := -Wall
-export CXXFLAGS := -Wall
+export CFLAGS += -Wall
+export CXXFLAGS += -Wall
 C_CXX_FLAGS := -MMD -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_LARGE_FILES -I$(BASE_DIR) -I$(BASE_DIR)/Crypto
 export ASFLAGS := -Ox -D __GNUC__
-export LFLAGS :=
+export LFLAGS = $(LDFLAGS)
 
 export PKG_CONFIG_PATH ?= /usr/local/lib/pkgconfig
 
