@@ -58,7 +58,7 @@ namespace VeraCrypt
 		FavoritesListCtrl->SetFocus();
 	}
 
-	void FavoriteVolumesDialog::OnMoveDownButtonClick (wxCommandEvent& event)
+	void FavoriteVolumesDialog::OnMoveDownButtonClick (wxCommandEvent&)
 	{
 		FreezeScope freeze (this);
 		foreach_reverse (long itemIndex, Gui->GetListCtrlSelectedItems (FavoritesListCtrl))
@@ -70,7 +70,7 @@ namespace VeraCrypt
 		UpdateButtons();
 	}
 
-	void FavoriteVolumesDialog::OnMoveUpButtonClick (wxCommandEvent& event)
+	void FavoriteVolumesDialog::OnMoveUpButtonClick (wxCommandEvent&)
 	{
 		FreezeScope freeze (this);
 		foreach (long itemIndex, Gui->GetListCtrlSelectedItems (FavoritesListCtrl))
@@ -83,7 +83,7 @@ namespace VeraCrypt
 		UpdateButtons();
 	}
 
-	void FavoriteVolumesDialog::OnOKButtonClick (wxCommandEvent& event)
+	void FavoriteVolumesDialog::OnOKButtonClick (wxCommandEvent&)
 	{
 		FavoriteVolumeList newFavorites;
 
@@ -97,13 +97,13 @@ namespace VeraCrypt
 		EndModal (wxID_OK);
 	}
 
-	void FavoriteVolumesDialog::OnRemoveAllButtonClick (wxCommandEvent& event)
+	void FavoriteVolumesDialog::OnRemoveAllButtonClick (wxCommandEvent&)
 	{
 		FavoritesListCtrl->DeleteAllItems();
 		UpdateButtons();
 	}
 
-	void FavoriteVolumesDialog::OnRemoveButtonClick (wxCommandEvent& event)
+	void FavoriteVolumesDialog::OnRemoveButtonClick (wxCommandEvent&)
 	{
 		long offset = 0;
 		foreach (long item, Gui->GetListCtrlSelectedItems (FavoritesListCtrl))

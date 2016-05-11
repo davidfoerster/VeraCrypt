@@ -37,11 +37,11 @@ namespace VeraCrypt
 		void OnDeleteButtonClick (wxCommandEvent& event);
 		void OnExportButtonClick (wxCommandEvent& event);
 		void OnImportButtonClick (wxCommandEvent& event);
-		void OnListItemActivated (wxListEvent& event) { OnOKButtonClick(); }
+		void OnListItemActivated (wxListEvent&) { OnOKButtonClick(); }
 		void OnListItemDeselected (wxListEvent& event);
 		void OnListItemSelected (wxListEvent& event);
 		void OnOKButtonClick ();
-		void OnOKButtonClick (wxCommandEvent& event) { OnOKButtonClick(); }
+		void OnOKButtonClick (wxCommandEvent&) { OnOKButtonClick(); }
 
 		vector <SecurityTokenKeyfile> SecurityTokenKeyfileList;
 		list <SecurityTokenKeyfilePath> SelectedSecurityTokenKeyfilePaths;

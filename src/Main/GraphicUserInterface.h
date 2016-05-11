@@ -34,10 +34,21 @@ namespace VeraCrypt
 		virtual void BackupVolumeHeaders (shared_ptr <VolumePath> volumePath) const;
 		virtual void BeginBusyState () const { wxBeginBusyCursor(); }
 		virtual void BeginInteractiveBusyState (wxWindow *window);
-		virtual void ChangePassword (shared_ptr <VolumePath> volumePath = shared_ptr <VolumePath>(), shared_ptr <VolumePassword> password = shared_ptr <VolumePassword>(), int pim = 0, shared_ptr <Hash> currentHash = shared_ptr <Hash>(), bool truecryptMode = false, shared_ptr <KeyfileList> keyfiles = shared_ptr <KeyfileList>(), shared_ptr <VolumePassword> newPassword = shared_ptr <VolumePassword>(), int newPim = 0, shared_ptr <KeyfileList> newKeyfiles = shared_ptr <KeyfileList>(), shared_ptr <Hash> newHash = shared_ptr <Hash>()) const { ThrowTextModeRequired(); }
+		virtual void ChangePassword (
+			shared_ptr <VolumePath> volumePath TC_UNUSED_VAR = shared_ptr <VolumePath>(),
+			shared_ptr <VolumePassword> password TC_UNUSED_VAR = shared_ptr <VolumePassword>(),
+			int pim TC_UNUSED_VAR = 0,
+			shared_ptr <Hash> currentHash TC_UNUSED_VAR = shared_ptr <Hash>(),
+			bool truecryptMode TC_UNUSED_VAR = false,
+			shared_ptr <KeyfileList> keyfiles TC_UNUSED_VAR = shared_ptr <KeyfileList>(),
+			shared_ptr <VolumePassword> newPassword TC_UNUSED_VAR = shared_ptr <VolumePassword>(),
+			int newPim TC_UNUSED_VAR = 0,
+			shared_ptr <KeyfileList> newKeyfiles TC_UNUSED_VAR = shared_ptr <KeyfileList>(),
+			shared_ptr <Hash> newHash TC_UNUSED_VAR = shared_ptr <Hash>()) const
+		{ ThrowTextModeRequired(); }
 		wxHyperlinkCtrl *CreateHyperlink (wxWindow *parent, const wxString &linkUrl, const wxString &linkText) const;
 		virtual void CreateKeyfile (shared_ptr <FilePath> keyfilePath = shared_ptr <FilePath>()) const;
-		virtual void CreateVolume (shared_ptr <VolumeCreationOptions> options) const { ThrowTextModeRequired(); }
+		virtual void CreateVolume (shared_ptr <VolumeCreationOptions> options TC_UNUSED_VAR) const { ThrowTextModeRequired(); }
 		virtual void ClearListCtrlSelection (wxListCtrl *listCtrl) const;
 		virtual void DeleteSecurityTokenKeyfiles () const { ThrowTextModeRequired(); }
 		virtual void DoShowError (const wxString &message) const;
@@ -115,7 +126,7 @@ namespace VeraCrypt
 		Event OpenVolumeSystemRequestEvent;
 
 	protected:
-		virtual void OnEndSession (wxCloseEvent& event) { OnLogOff(); }
+		virtual void OnEndSession (wxCloseEvent&) { OnLogOff(); }
 #ifdef wxHAS_POWER_EVENTS
 		virtual void OnPowerSuspending (wxPowerEvent& event);
 #endif

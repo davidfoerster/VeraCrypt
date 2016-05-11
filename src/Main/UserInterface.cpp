@@ -120,6 +120,8 @@ namespace VeraCrypt
 		args.DriveRootPath = string() + mountPoint[0] + string (":\\");
 
 		EnumWindows (Enumerator::TopLevelWindows, (LPARAM) &args);
+#else
+		TC_UNUSED(mountedVolume);
 #endif
 	}
 
@@ -526,7 +528,7 @@ namespace VeraCrypt
 		{
 			struct AdminPasswordRequestHandler : public GetStringFunctor
 			{
-				virtual void operator() (string &str)
+				virtual void operator() (string &str TC_UNUSED_VAR)
 				{
 					throw ElevationFailed (SRC_POS, "sudo", 1, "");
 				}

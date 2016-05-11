@@ -362,7 +362,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void VolumeCreationWizard::OnAbortButtonClick (EventArgs &args)
+	void VolumeCreationWizard::OnAbortButtonClick (EventArgs &)
 	{
 		AbortRequested = true;
 	}

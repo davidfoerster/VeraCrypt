@@ -36,11 +36,11 @@ namespace VeraCrypt
 		virtual int GetOSMajorVersion () const { throw NotApplicable (SRC_POS); }
 		virtual int GetOSMinorVersion () const { throw NotApplicable (SRC_POS); }
 		virtual VolumeInfoList GetMountedVolumes (const VolumePath &volumePath = VolumePath()) const;
-		virtual bool IsDevicePresent (const DevicePath &device) const { throw NotApplicable (SRC_POS); }
+		virtual bool IsDevicePresent (const DevicePath &device TC_UNUSED_VAR) const { throw NotApplicable (SRC_POS); }
 		virtual bool IsInPortableMode () const { return false; }
 		virtual bool IsMountPointAvailable (const DirectoryPath &mountPoint) const;
-		virtual bool IsOSVersion (int major, int minor) const { throw NotApplicable (SRC_POS); }
-		virtual bool IsOSVersionLower (int major, int minor) const { throw NotApplicable (SRC_POS); }
+		virtual bool IsOSVersion (int major TC_UNUSED_VAR, int minor TC_UNUSED_VAR) const { throw NotApplicable (SRC_POS); }
+		virtual bool IsOSVersionLower (int major TC_UNUSED_VAR, int minor TC_UNUSED_VAR) const { throw NotApplicable (SRC_POS); }
 		virtual bool IsPasswordCacheEmpty () const { throw NotApplicable (SRC_POS); }
 		virtual bool HasAdminPrivileges () const { return getuid() == 0 || geteuid() == 0; }
 		virtual VolumeSlotNumber MountPointToSlotNumber (const DirectoryPath &mountPoint) const;
@@ -50,9 +50,9 @@ namespace VeraCrypt
 		virtual void WipePasswordCache () const { throw NotApplicable (SRC_POS); }
 
 	protected:
-		virtual DevicePath AttachFileToLoopDevice (const FilePath &filePath, bool readOnly) const { throw NotApplicable (SRC_POS); }
-		virtual void DetachLoopDevice (const DevicePath &devicePath) const { throw NotApplicable (SRC_POS); }
-		virtual void DismountNativeVolume (shared_ptr <VolumeInfo> mountedVolume) const { throw NotApplicable (SRC_POS); }
+		virtual DevicePath AttachFileToLoopDevice (const FilePath &filePath TC_UNUSED_VAR, bool readOnly TC_UNUSED_VAR) const { throw NotApplicable (SRC_POS); }
+		virtual void DetachLoopDevice (const DevicePath &devicePath TC_UNUSED_VAR) const { throw NotApplicable (SRC_POS); }
+		virtual void DismountNativeVolume (shared_ptr <VolumeInfo> mountedVolume TC_UNUSED_VAR) const { throw NotApplicable (SRC_POS); }
 		virtual bool FilesystemSupportsUnixPermissions (const DevicePath &devicePath) const;
 		virtual string GetDefaultMountPointPrefix () const;
 		virtual string GetFuseMountDirPrefix () const { return ".veracrypt_aux_mnt"; }
@@ -62,7 +62,7 @@ namespace VeraCrypt
 		virtual string GetTempDirectory () const;
 		virtual void MountFilesystem (const DevicePath &devicePath, const DirectoryPath &mountPoint, const string &filesystemType, bool readOnly, const string &systemMountOptions) const;
 		virtual void MountAuxVolumeImage (const DirectoryPath &auxMountPoint, const MountOptions &options) const;
-		virtual void MountVolumeNative (shared_ptr <Volume> volume, MountOptions &options, const DirectoryPath &auxMountPoint) const { throw NotApplicable (SRC_POS); }
+		virtual void MountVolumeNative (shared_ptr <Volume> volume TC_UNUSED_VAR, MountOptions &options TC_UNUSED_VAR, const DirectoryPath &auxMountPoint TC_UNUSED_VAR) const { throw NotApplicable (SRC_POS); }
 
 	private:
 		CoreUnix (const CoreUnix &);

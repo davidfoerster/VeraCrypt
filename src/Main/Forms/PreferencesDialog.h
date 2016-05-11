@@ -30,7 +30,7 @@ namespace VeraCrypt
 	protected:
 		void OnAssignHotkeyButtonClick (wxCommandEvent& event);
 		void OnBackgroundTaskEnabledCheckBoxClick (wxCommandEvent& event);
-		void OnCancelButtonClick (wxCommandEvent& event) { EndModal (wxID_CANCEL); }
+		void OnCancelButtonClick (wxCommandEvent&) { EndModal (wxID_CANCEL); }
 		void OnClose (wxCloseEvent& event);
 		void OnDismountOnPowerSavingCheckBoxClick (wxCommandEvent& event);
 		void OnDismountOnScreenSaverCheckBoxClick (wxCommandEvent& event);

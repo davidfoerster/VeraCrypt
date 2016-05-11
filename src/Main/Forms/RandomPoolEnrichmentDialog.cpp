@@ -54,7 +54,7 @@ namespace VeraCrypt
 	{
 	}
 
-	void RandomPoolEnrichmentDialog::OnHashSelected (wxCommandEvent& event)
+	void RandomPoolEnrichmentDialog::OnHashSelected (wxCommandEvent&)
 	{
 		RandomNumberGenerator::SetHash (Gui->GetSelectedData <Hash> (HashChoice)->GetNew());
 	}

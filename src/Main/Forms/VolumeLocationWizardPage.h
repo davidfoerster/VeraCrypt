@@ -31,7 +31,7 @@ namespace VeraCrypt
 		void SetPageText (const wxString &text) { InfoStaticText->SetLabel (text); }
 
 	protected:
-		void OnVolumePathTextChanged (wxCommandEvent& event) { PageUpdatedEvent.Raise(); }
+		void OnVolumePathTextChanged (wxCommandEvent&) { PageUpdatedEvent.Raise(); }
 		void OnNoHistoryCheckBoxClick (wxCommandEvent& event);
 		void OnSelectDeviceButtonClick (wxCommandEvent& event);
 		void OnSelectFileButtonClick (wxCommandEvent& event);

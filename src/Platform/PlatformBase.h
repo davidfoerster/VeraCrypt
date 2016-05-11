@@ -76,6 +76,8 @@ namespace VeraCrypt
 #define TC_JOIN_ARGS(a,b) a##b
 #define TC_JOIN(a,b) TC_JOIN_ARGS(a,b)
 
+#define TC_UNUSED(x) static_cast<void>(sizeof(x))
+
 #ifdef __GNUC__
 namespace
 {

@@ -71,23 +71,23 @@ namespace VeraCrypt
 		void MountAllFavorites ();
 		void MountVolume ();
 		void OnAboutMenuItemSelected (wxCommandEvent& event);
-		void OnQuit(wxCommandEvent& event) { Close(true); }
+		void OnQuit(wxCommandEvent&) { Close(true); }
 		void OnActivate (wxActivateEvent& event);
 		void OnAddAllMountedToFavoritesMenuItemSelected (wxCommandEvent& event);
 		void OnAddToFavoritesMenuItemSelected (wxCommandEvent& event);
 		void OnBackupVolumeHeadersMenuItemSelected (wxCommandEvent& event);
-		void OnBeginnersTutorialMenuItemSelected (wxCommandEvent& event) { Gui->OpenHomepageLink (this, L"tutorial"); }
+		void OnBeginnersTutorialMenuItemSelected (wxCommandEvent&) { Gui->OpenHomepageLink (this, L"tutorial"); }
 		void OnBenchmarkMenuItemSelected (wxCommandEvent& event);
-		void OnChangeKeyfilesMenuItemSelected (wxCommandEvent& event) { ChangePassword (ChangePasswordDialog::Mode::ChangeKeyfiles); }
-		void OnChangePasswordMenuItemSelected (wxCommandEvent& event) { ChangePassword (); }
-		void OnChangePkcs5PrfMenuItemSelected (wxCommandEvent& event) { ChangePassword (ChangePasswordDialog::Mode::ChangePkcs5Prf); }
-		void OnCheckFilesystemMenuItemSelected( wxCommandEvent& event ) { CheckFilesystem (); }
+		void OnChangeKeyfilesMenuItemSelected (wxCommandEvent&) { ChangePassword (ChangePasswordDialog::Mode::ChangeKeyfiles); }
+		void OnChangePasswordMenuItemSelected (wxCommandEvent&) { ChangePassword (); }
+		void OnChangePkcs5PrfMenuItemSelected (wxCommandEvent&) { ChangePassword (ChangePasswordDialog::Mode::ChangePkcs5Prf); }
+		void OnCheckFilesystemMenuItemSelected( wxCommandEvent& ) { CheckFilesystem (); }
 		void OnClearSlotSelectionMenuItemSelected (wxCommandEvent& event);
 		void OnClose (wxCloseEvent& event);
 		void OnCloseAllSecurityTokenSessionsMenuItemSelected (wxCommandEvent& event);
-		void OnDonateMenuItemSelected (wxCommandEvent& event) { Gui->OpenHomepageLink (this, L"donate"); }
-		void OnContactMenuItemSelected (wxCommandEvent& event) { Gui->OpenHomepageLink (this, L"contact"); }
-		void OnCreateKeyfileMenuItemSelected (wxCommandEvent& event)
+		void OnDonateMenuItemSelected (wxCommandEvent&) { Gui->OpenHomepageLink (this, L"donate"); }
+		void OnContactMenuItemSelected (wxCommandEvent&) { Gui->OpenHomepageLink (this, L"contact"); }
+		void OnCreateKeyfileMenuItemSelected (wxCommandEvent&)
 		{
 #ifdef TC_MACOSX
 			if (Gui->IsInBackgroundMode())
@@ -99,12 +99,12 @@ namespace VeraCrypt
 		void OnDefaultKeyfilesMenuItemSelected (wxCommandEvent& event);
 		void OnDefaultMountParametersMenuItemSelected( wxCommandEvent& event );
 		void OnDismountAllButtonClick (wxCommandEvent& event);
-		void OnDismountVolumeMenuItemSelected (wxCommandEvent& event) { DismountVolume(); }
-		void OnDownloadsMenuItemSelected (wxCommandEvent& event) { Gui->OpenHomepageLink (this, L"downloads"); }
+		void OnDismountVolumeMenuItemSelected (wxCommandEvent&) { DismountVolume(); }
+		void OnDownloadsMenuItemSelected (wxCommandEvent&) { Gui->OpenHomepageLink (this, L"downloads"); }
 		void OnEncryptionTestMenuItemSelected (wxCommandEvent& event);
 		void OnExitButtonClick (wxCommandEvent& event);
 		void OnFavoriteVolumeMenuItemSelected (wxCommandEvent& event);
-		void OnFaqMenuItemSelected (wxCommandEvent& event) { Gui->OpenHomepageLink (this, L"faq"); }
+		void OnFaqMenuItemSelected (wxCommandEvent&) { Gui->OpenHomepageLink (this, L"faq"); }
 		void OnHiddenVolumeProtectionTriggered (shared_ptr <VolumeInfo> protectedVolume);
 		void OnHotkey (wxKeyEvent& event);
 		void OnHotkeysMenuItemSelected (wxCommandEvent& event);
@@ -117,23 +117,23 @@ namespace VeraCrypt
 		void OnListItemRightClick (wxListEvent& event);
 		void OnListItemSelected (wxListEvent& event);
 		void OnListItemSelectionChanged ();
-		void OnLogoBitmapClick (wxMouseEvent &event) { wxCommandEvent ev; OnAboutMenuItemSelected (ev); }
+		void OnLogoBitmapClick (wxMouseEvent &) { wxCommandEvent ev; OnAboutMenuItemSelected (ev); }
 		void OnManageSecurityTokenKeyfilesMenuItemSelected (wxCommandEvent& event);
 		void OnMountAllDevicesButtonClick (wxCommandEvent& event);
 		void OnMountAllFavoritesMenuItemSelected (wxCommandEvent& event);
-		void OnMountVolumeMenuItemSelected (wxCommandEvent& event) { MountVolume(); }
-		void OnNewsMenuItemSelected (wxCommandEvent& event) { Gui->OpenHomepageLink (this, L"news"); }
+		void OnMountVolumeMenuItemSelected (wxCommandEvent&) { MountVolume(); }
+		void OnNewsMenuItemSelected (wxCommandEvent&) { Gui->OpenHomepageLink (this, L"news"); }
 		void OnNoHistoryCheckBoxClick (wxCommandEvent& event);
-		void OnOnlineHelpMenuItemSelected (wxCommandEvent& event) { Gui->OpenOnlineHelp (this); }
-		void OnOpenVolumeMenuItemSelected (wxCommandEvent& event) { OpenSelectedVolume(); }
+		void OnOnlineHelpMenuItemSelected (wxCommandEvent&) { Gui->OpenOnlineHelp (this); }
+		void OnOpenVolumeMenuItemSelected (wxCommandEvent&) { OpenSelectedVolume(); }
 		void OnOpenVolumeSystemRequest (wxCommandEvent& event);
 		void OnOpenVolumeSystemRequestEvent (EventArgs &args);
 		void OnOrganizeFavoritesMenuItemSelected (wxCommandEvent& event);
 		void OnPreferencesMenuItemSelected (wxCommandEvent& event);
 		void OnPreferencesUpdated (wxCommandEvent& event);
-		void OnPreferencesUpdatedEvent (EventArgs &args) { wxQueueEvent (this, new wxCommandEvent( wxEVT_COMMAND_PREF_UPDATED,0)); }
-		void OnRemoveKeyfilesMenuItemSelected (wxCommandEvent& event) { ChangePassword (ChangePasswordDialog::Mode::RemoveAllKeyfiles); }
-		void OnRepairFilesystemMenuItemSelected( wxCommandEvent& event ) { CheckFilesystem (true); }
+		void OnPreferencesUpdatedEvent (EventArgs &) { wxQueueEvent (this, new wxCommandEvent( wxEVT_COMMAND_PREF_UPDATED,0)); }
+		void OnRemoveKeyfilesMenuItemSelected (wxCommandEvent&) { ChangePassword (ChangePasswordDialog::Mode::RemoveAllKeyfiles); }
+		void OnRepairFilesystemMenuItemSelected( wxCommandEvent& ) { CheckFilesystem (true); }
 		void OnRestoreVolumeHeaderMenuItemSelected (wxCommandEvent& event);
 		void OnSecurityTokenPreferencesMenuItemSelected (wxCommandEvent& event);
 		void OnSelectDeviceAndMountMenuItemSelected (wxCommandEvent& event);
@@ -141,15 +141,15 @@ namespace VeraCrypt
 		void OnSelectFileAndMountMenuItemSelected (wxCommandEvent& event);
 		void OnSelectFileButtonClick (wxCommandEvent& event);
 		void OnTimer ();
-		void OnVersionHistoryMenuItemSelected (wxCommandEvent& event) { Gui->OpenHomepageLink (this, L"history"); }
+		void OnVersionHistoryMenuItemSelected (wxCommandEvent&) { Gui->OpenHomepageLink (this, L"history"); }
 		void OnVolumePropertiesButtonClick (wxCommandEvent& event);
 		void OnVolumeToolsButtonClick (wxCommandEvent& event);
 		void OnVolumeButtonClick (wxCommandEvent& event);
-		void OnUpdateVolumeList (wxCommandEvent& event) { UpdateVolumeList(); }
-		void OnVolumeDismounted (EventArgs &args) { wxQueueEvent (this, new wxCommandEvent( wxEVT_COMMAND_UPDATE_VOLUME_LIST,0)); }
-		void OnVolumeMounted (EventArgs &args) { wxQueueEvent (this, new wxCommandEvent( wxEVT_COMMAND_UPDATE_VOLUME_LIST,0)); }
-		void OnUserGuideMenuItemSelected (wxCommandEvent& event) { Gui->OpenUserGuide (this); }
-		void OnWebsiteMenuItemSelected (wxCommandEvent& event) { Gui->OpenHomepageLink (this, L"website"); }
+		void OnUpdateVolumeList (wxCommandEvent&) { UpdateVolumeList(); }
+		void OnVolumeDismounted (EventArgs &) { wxQueueEvent (this, new wxCommandEvent( wxEVT_COMMAND_UPDATE_VOLUME_LIST,0)); }
+		void OnVolumeMounted (EventArgs &) { wxQueueEvent (this, new wxCommandEvent( wxEVT_COMMAND_UPDATE_VOLUME_LIST,0)); }
+		void OnUserGuideMenuItemSelected (wxCommandEvent&) { Gui->OpenUserGuide (this); }
+		void OnWebsiteMenuItemSelected (wxCommandEvent&) { Gui->OpenHomepageLink (this, L"website"); }
 		void OnWipeCacheButtonClick (wxCommandEvent& event);
 		void OrganizeFavorites (const FavoriteVolumeList &favorites, size_t newItemCount = 0);
 		void OpenSelectedVolume () const;

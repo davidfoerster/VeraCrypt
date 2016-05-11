@@ -27,7 +27,7 @@ namespace VeraCrypt
 		void SetPageText (const wxString &text) { InfoStaticText->SetLabel (text); }
 
 	protected:
-		virtual void OnActionButtonClick (wxCommandEvent& event) { (*ActionFunctor)(); }
+		virtual void OnActionButtonClick (wxCommandEvent&) { (*ActionFunctor)(); }
 
 		shared_ptr <Functor> ActionFunctor;
 	};

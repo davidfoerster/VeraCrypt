@@ -28,11 +28,11 @@ namespace VeraCrypt
 		shared_ptr <EncryptionAlgorithm> GetSelectedEncryptionAlgorithm () const;
 		void GetTextCtrlData (wxTextCtrl *textCtrl, Buffer &buffer) const;
 		void OnAutoTestAllButtonClick (wxCommandEvent& event);
-		void OnDecryptButtonClick (wxCommandEvent& event) { EncryptOrDecrypt (false); }
-		void OnEncryptButtonClick (wxCommandEvent& event) { EncryptOrDecrypt (true); }
+		void OnDecryptButtonClick (wxCommandEvent&) { EncryptOrDecrypt (false); }
+		void OnEncryptButtonClick (wxCommandEvent&) { EncryptOrDecrypt (true); }
 		void OnEncryptionAlgorithmSelected ();
-		void OnEncryptionAlgorithmSelected (wxCommandEvent& event) { OnEncryptionAlgorithmSelected(); }
-		void OnResetButtonClick (wxCommandEvent& event) { Reset(); }
+		void OnEncryptionAlgorithmSelected (wxCommandEvent&) { OnEncryptionAlgorithmSelected(); }
+		void OnResetButtonClick (wxCommandEvent&) { Reset(); }
 		void OnXtsModeCheckBoxClick (wxCommandEvent& event);
 		void SetTextCtrlData (wxTextCtrl *textCtrl, const BufferPtr &data);
 		void Reset ();

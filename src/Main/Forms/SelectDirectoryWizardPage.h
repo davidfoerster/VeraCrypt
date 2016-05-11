@@ -30,7 +30,7 @@ namespace VeraCrypt
 
 	protected:
 		void OnBrowseButtonClick (wxCommandEvent& event);
-		void OnDirectoryTextChanged (wxCommandEvent& event) { PageUpdatedEvent.Raise(); }
+		void OnDirectoryTextChanged (wxCommandEvent&) { PageUpdatedEvent.Raise(); }
 	};
 }
 

@@ -98,13 +98,13 @@ namespace VeraCrypt
 		StdButtonsOK->SetDefault();
 	}
 
-	void DeviceSelectionDialog::OnListItemActivated (wxListEvent& event)
+	void DeviceSelectionDialog::OnListItemActivated (wxListEvent&)
 	{
 		if (StdButtonsOK->IsEnabled())
 			EndModal (wxID_OK);
 	}
 
-	void DeviceSelectionDialog::OnListItemDeselected (wxListEvent& event)
+	void DeviceSelectionDialog::OnListItemDeselected (wxListEvent&)
 	{
 		if (DeviceListCtrl->GetSelectedItemCount() == 0)
 			StdButtonsOK->Disable();

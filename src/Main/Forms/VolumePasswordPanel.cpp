@@ -18,7 +18,7 @@
 
 namespace VeraCrypt
 {
-	VolumePasswordPanel::VolumePasswordPanel (wxWindow* parent, MountOptions* options, shared_ptr <VolumePassword> password, bool disableTruecryptMode, shared_ptr <KeyfileList> keyfiles, bool enableCache, bool enablePassword, bool enableKeyfiles, bool enableConfirmation, bool enablePkcs5Prf, bool isMountPassword, const wxString &passwordLabel)
+	VolumePasswordPanel::VolumePasswordPanel (wxWindow* parent, MountOptions* options, shared_ptr <VolumePassword> password TC_UNUSED_VAR, bool disableTruecryptMode, shared_ptr <KeyfileList> keyfiles, bool enableCache, bool enablePassword, bool enableKeyfiles, bool enableConfirmation, bool enablePkcs5Prf, bool isMountPassword, const wxString &passwordLabel)
 		: VolumePasswordPanelBase (parent), Keyfiles (new KeyfileList), EnablePimEntry (true)
 	{
 		if (keyfiles)
@@ -139,12 +139,12 @@ namespace VeraCrypt
 		public:
 			FileDropTarget (VolumePasswordPanel *panel) : Panel (panel) { }
 
-			wxDragResult OnDragOver (wxCoord x, wxCoord y, wxDragResult def)
+			wxDragResult OnDragOver (wxCoord, wxCoord, wxDragResult)
 			{
 				return wxDragLink;
 			}
 
-			bool OnDropFiles (wxCoord x, wxCoord y, const wxArrayString &filenames)
+			bool OnDropFiles (wxCoord, wxCoord, const wxArrayString &filenames)
 			{
 				foreach (const wxString &f, filenames)
 					Panel->AddKeyfile (make_shared <Keyfile> (wstring (f)));
@@ -324,7 +324,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void VolumePasswordPanel::OnAddKeyfileDirMenuItemSelected (wxCommandEvent& event)
+	void VolumePasswordPanel::OnAddKeyfileDirMenuItemSelected (wxCommandEvent&)
 	{
 		try
 		{
@@ -344,7 +344,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void VolumePasswordPanel::OnAddKeyfilesMenuItemSelected (wxCommandEvent& event)
+	void VolumePasswordPanel::OnAddKeyfilesMenuItemSelected (wxCommandEvent&)
 	{
 		try
 		{
@@ -365,7 +365,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void VolumePasswordPanel::OnAddSecurityTokenSignatureMenuItemSelected (wxCommandEvent& event)
+	void VolumePasswordPanel::OnAddSecurityTokenSignatureMenuItemSelected (wxCommandEvent&)
 	{
 		try
 		{
@@ -403,7 +403,7 @@ namespace VeraCrypt
 		OnUpdate();
 	}
 
-	void VolumePasswordPanel::OnKeyfilesButtonClick (wxCommandEvent& event)
+	void VolumePasswordPanel::OnKeyfilesButtonClick (wxCommandEvent&)
 	{
 		KeyfilesDialog dialog (GetParent(), Keyfiles);
 
@@ -416,7 +416,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void VolumePasswordPanel::OnKeyfilesButtonRightClick (wxMouseEvent& event)
+	void VolumePasswordPanel::OnKeyfilesButtonRightClick (wxMouseEvent&)
 	{
 		wxMenu popup;
 		Gui->AppendToMenu (popup, LangString["IDC_KEYADD"], this, wxCommandEventHandler (VolumePasswordPanel::OnAddKeyfilesMenuItemSelected));
@@ -430,6 +430,8 @@ namespace VeraCrypt
 	{
 #ifndef TC_MACOSX
 		event.Skip();
+#else
+		TC_UNUSED(event);
 #endif
 	}
 
@@ -478,7 +480,7 @@ namespace VeraCrypt
 		return guiUpdated;
 	}
 
-	void VolumePasswordPanel::OnUsePimCheckBoxClick( wxCommandEvent& event )
+	void VolumePasswordPanel::OnUsePimCheckBoxClick( wxCommandEvent& )
 	{
 		if (EnablePimEntry)
 		{
@@ -500,7 +502,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void VolumePasswordPanel::OnTrueCryptModeChecked( wxCommandEvent& event )
+	void VolumePasswordPanel::OnTrueCryptModeChecked( wxCommandEvent& )
 	{
 		bool bEnablePIM = !GetTrueCryptMode ();
 		PimCheckBox->Enable (bEnablePIM);

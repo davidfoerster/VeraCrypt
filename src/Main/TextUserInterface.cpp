@@ -230,7 +230,7 @@ namespace VeraCrypt
 		return wstring (ReadInputStreamLine());
 	}
 
-	bool TextUserInterface::AskYesNo (const wxString &message, bool defaultYes, bool warning) const
+	bool TextUserInterface::AskYesNo (const wxString &message, bool defaultYes, bool warning TC_UNUSED_VAR) const
 	{
 		while (true)
 		{
@@ -1294,7 +1294,7 @@ namespace VeraCrypt
 		return 1;
 	}
 
-	void TextUserInterface::OnSignal (int signal)
+	void TextUserInterface::OnSignal (int signal TC_UNUSED_VAR)
 	{
 #ifdef TC_UNIX
 		try

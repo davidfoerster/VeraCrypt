@@ -27,8 +27,8 @@ namespace VeraCrypt
 		FavoriteVolumeList GetFavorites () const { return Favorites; }
 
 	protected:
-		void OnListItemDeselected (wxListEvent& event) { UpdateButtons (); }
-		void OnListItemSelected (wxListEvent& event) { UpdateButtons (); }
+		void OnListItemDeselected (wxListEvent&) { UpdateButtons (); }
+		void OnListItemSelected (wxListEvent&) { UpdateButtons (); }
 		void OnMoveUpButtonClick (wxCommandEvent& event);
 		void OnMoveDownButtonClick (wxCommandEvent& event);
 		void OnOKButtonClick (wxCommandEvent& event);

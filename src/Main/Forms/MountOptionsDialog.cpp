@@ -72,19 +72,19 @@ namespace VeraCrypt
 		Center();
 	}
 
-	void MountOptionsDialog::OnInitDialog (wxInitDialogEvent& event)
+	void MountOptionsDialog::OnInitDialog (wxInitDialogEvent&)
 	{
 		PasswordPanel->SetFocusToPasswordTextCtrl();
 	}
 
-	void MountOptionsDialog::OnMountPointButtonClick (wxCommandEvent& event)
+	void MountOptionsDialog::OnMountPointButtonClick (wxCommandEvent&)
 	{
 		DirectoryPath dir = Gui->SelectDirectory (this, wxEmptyString, false);
 		if (!dir.IsEmpty())
 			MountPointTextCtrl->SetValue (wstring (dir));
 	}
 
-	void MountOptionsDialog::OnOKButtonClick (wxCommandEvent& event)
+	void MountOptionsDialog::OnOKButtonClick (wxCommandEvent&)
 	{
 		bool bUnsupportedKdf = false;
 
@@ -166,7 +166,7 @@ namespace VeraCrypt
 		EndModal (wxID_OK);
 	}
 
-	void MountOptionsDialog::OnOptionsButtonClick (wxCommandEvent& event)
+	void MountOptionsDialog::OnOptionsButtonClick (wxCommandEvent&)
 	{
 		FreezeScope freeze (this);
 		OptionsPanel->Show (!OptionsPanel->IsShown());
@@ -183,7 +183,7 @@ namespace VeraCrypt
 		ProtectionPasswordPanel->SetFocusToPasswordTextCtrl();
 	}
 
-	void MountOptionsDialog::OnProtectionHyperlinkClick (wxHyperlinkEvent& event)
+	void MountOptionsDialog::OnProtectionHyperlinkClick (wxHyperlinkEvent&)
 	{
 		Gui->OpenHomepageLink (this, L"hiddenvolprotection");
 	}

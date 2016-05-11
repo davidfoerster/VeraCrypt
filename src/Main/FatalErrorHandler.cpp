@@ -129,7 +129,7 @@ namespace VeraCrypt
 		return checkSum;
 	}
 
-	wstring FatalErrorHandler::GetCallStack (int depth)
+	wstring FatalErrorHandler::GetCallStack (int depth TC_UNUSED_VAR)
 	{
 #if wxUSE_STACKWALKER == 1
 

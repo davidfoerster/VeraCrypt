@@ -86,7 +86,7 @@ namespace VeraCrypt
 
 	public:
 		template <class T>
-		static TypeWrapper <T> ToTypeWrapper (const T &x) { return TypeWrapper <T> (); }
+		static TypeWrapper <T> ToTypeWrapper (const T &) { return TypeWrapper <T> (); }
 
 		struct TypeWrapperDummy
 		{

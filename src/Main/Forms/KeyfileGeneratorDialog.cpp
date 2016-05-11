@@ -52,7 +52,7 @@ namespace VeraCrypt
 	{
 	}
 
-	void KeyfileGeneratorDialog::OnGenerateButtonClick (wxCommandEvent& event)
+	void KeyfileGeneratorDialog::OnGenerateButtonClick (wxCommandEvent&)
 	{
 		try
 		{
@@ -155,7 +155,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void KeyfileGeneratorDialog::OnHashSelected (wxCommandEvent& event)
+	void KeyfileGeneratorDialog::OnHashSelected (wxCommandEvent&)
 	{
 		RandomNumberGenerator::SetHash (Gui->GetSelectedData <Hash> (HashChoice)->GetNew());
 	}

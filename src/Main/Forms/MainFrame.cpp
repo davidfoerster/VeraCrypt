@@ -373,7 +373,7 @@ namespace VeraCrypt
 		public:
 			FileDropTarget (MainFrame *frame) : Frame (frame) { }
 
-			wxDragResult OnDragOver (wxCoord x, wxCoord y, wxDragResult def)
+			wxDragResult OnDragOver (wxCoord, wxCoord, wxDragResult)
 			{
 				wxPoint p;
 				wxWindow *w = wxFindWindowAtPointer (p);
@@ -382,7 +382,7 @@ namespace VeraCrypt
 				return wxDragNone;
 			}
 
-			bool OnDropFiles (wxCoord x, wxCoord y, const wxArrayString &filenames)
+			bool OnDropFiles (wxCoord, wxCoord, const wxArrayString &filenames)
 			{
 				if (!filenames.empty())
 					Frame->SetVolumePath (wstring (filenames.front()));
@@ -577,9 +577,9 @@ namespace VeraCrypt
 			void OnDismountAllMenuItemSelected (wxCommandEvent& event) { Busy = true; Frame->OnDismountAllButtonClick (event); Busy = false; }
 			void OnDismountMenuItemSelected (wxCommandEvent& event) { Busy = true; Frame->DismountVolume (DismountMap[event.GetId()]); Busy = false; }
 			void OnFavoriteVolumeMenuItemSelected (wxCommandEvent& event) { Busy = true; Frame->OnFavoriteVolumeMenuItemSelected (event); Busy = false; }
-			void OnMountAllFavoritesMenuItemSelected (wxCommandEvent& event) { Busy = true; Frame->MountAllFavorites (); Busy = false; }
+			void OnMountAllFavoritesMenuItemSelected (wxCommandEvent&) { Busy = true; Frame->MountAllFavorites (); Busy = false; }
 
-			void OnExitMenuItemSelected (wxCommandEvent& event)
+			void OnExitMenuItemSelected (wxCommandEvent&)
 			{
 				Busy = true;
 				if (Core->GetMountedVolumes().empty() || Gui->AskYesNo (LangString ["CONFIRM_EXIT"], false, true))
@@ -587,10 +587,10 @@ namespace VeraCrypt
 				Busy = false;
 			}
 
-			void OnLeftButtonDown (wxTaskBarIconEvent& event) { Gui->SetBackgroundMode (false); }
+			void OnLeftButtonDown (wxTaskBarIconEvent&) { Gui->SetBackgroundMode (false); }
 			void OnOpenMenuItemSelected (wxCommandEvent& event) { Gui->OpenExplorerWindow (OpenMap[event.GetId()]->MountPoint); }
 			void OnPreferencesMenuItemSelected (wxCommandEvent& event) { Busy = true; Frame->OnPreferencesMenuItemSelected (event); Busy = false; }
-			void OnShowHideMenuItemSelected (wxCommandEvent& event) { Gui->SetBackgroundMode (!Gui->IsInBackgroundMode()); }
+			void OnShowHideMenuItemSelected (wxCommandEvent&) { Gui->SetBackgroundMode (!Gui->IsInBackgroundMode()); }
 
 			bool Busy;
 			map < int, shared_ptr <VolumeInfo> > DismountMap;
@@ -723,7 +723,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void MainFrame::OnAboutMenuItemSelected (wxCommandEvent& event)
+	void MainFrame::OnAboutMenuItemSelected (wxCommandEvent&)
 	{
 #ifdef TC_MACOSX
 		if (Gui->IsInBackgroundMode())
@@ -744,12 +744,12 @@ namespace VeraCrypt
 		event.Skip();
 	}
 
-	void MainFrame::OnAddAllMountedToFavoritesMenuItemSelected (wxCommandEvent& event)
+	void MainFrame::OnAddAllMountedToFavoritesMenuItemSelected (wxCommandEvent&)
 	{
 		AddToFavorites (MountedVolumes);
 	}
 
-	void MainFrame::OnAddToFavoritesMenuItemSelected (wxCommandEvent& event)
+	void MainFrame::OnAddToFavoritesMenuItemSelected (wxCommandEvent&)
 	{
 		shared_ptr <VolumeInfo> selectedVolume = GetSelectedVolume();
 		if (selectedVolume)
@@ -760,7 +760,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void MainFrame::OnBackupVolumeHeadersMenuItemSelected (wxCommandEvent& event)
+	void MainFrame::OnBackupVolumeHeadersMenuItemSelected (wxCommandEvent&)
 	{
 		if (!CheckVolumePathNotEmpty ())
 			return;
@@ -775,7 +775,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void MainFrame::OnBenchmarkMenuItemSelected (wxCommandEvent& event)
+	void MainFrame::OnBenchmarkMenuItemSelected (wxCommandEvent&)
 	{
 #ifdef TC_MACOSX
 		if (Gui->IsInBackgroundMode())
@@ -785,7 +785,7 @@ namespace VeraCrypt
 		dialog.ShowModal();
 	}
 
-	void MainFrame::OnClearSlotSelectionMenuItemSelected (wxCommandEvent& event)
+	void MainFrame::OnClearSlotSelectionMenuItemSelected (wxCommandEvent&)
 	{
 		Gui->ClearListCtrlSelection (SlotListCtrl);
 		UpdateControls();
@@ -852,7 +852,7 @@ namespace VeraCrypt
 		return;
 	}
 
-	void MainFrame::OnCloseAllSecurityTokenSessionsMenuItemSelected (wxCommandEvent& event)
+	void MainFrame::OnCloseAllSecurityTokenSessionsMenuItemSelected (wxCommandEvent&)
 	{
 		try
 		{
@@ -868,7 +868,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void MainFrame::OnCreateVolumeButtonClick (wxCommandEvent& event)
+	void MainFrame::OnCreateVolumeButtonClick (wxCommandEvent&)
 	{
 		try
 		{
@@ -880,7 +880,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void MainFrame::OnDefaultKeyfilesMenuItemSelected (wxCommandEvent& event)
+	void MainFrame::OnDefaultKeyfilesMenuItemSelected (wxCommandEvent&)
 	{
 #ifdef TC_MACOSX
 		if (Gui->IsInBackgroundMode())
@@ -891,7 +891,7 @@ namespace VeraCrypt
 		dialog.ShowModal();
 	}
 
-	void MainFrame::OnDefaultMountParametersMenuItemSelected(wxCommandEvent& event)
+	void MainFrame::OnDefaultMountParametersMenuItemSelected(wxCommandEvent&)
 	{
 #ifdef TC_MACOSX
 		if (Gui->IsInBackgroundMode())
@@ -927,12 +927,12 @@ namespace VeraCrypt
 			Gui->AutoDismountVolumes (removedVolumes, true);
 	}
 
-	void MainFrame::OnDismountAllButtonClick (wxCommandEvent& event)
+	void MainFrame::OnDismountAllButtonClick (wxCommandEvent&)
 	{
 		Gui->DismountAllVolumes();
 	}
 
-	void MainFrame::OnEncryptionTestMenuItemSelected (wxCommandEvent& event)
+	void MainFrame::OnEncryptionTestMenuItemSelected (wxCommandEvent&)
 	{
 #ifdef TC_MACOSX
 		if (Gui->IsInBackgroundMode())
@@ -942,7 +942,7 @@ namespace VeraCrypt
 		dialog.ShowModal();
 	}
 
-	void MainFrame::OnExitButtonClick (wxCommandEvent& event)
+	void MainFrame::OnExitButtonClick (wxCommandEvent&)
 	{
 		Close();
 	}
@@ -1060,10 +1060,12 @@ namespace VeraCrypt
 			assert (false);
 			break;
 		}
+#else // TC_WINDOWS
+		TC_UNUSED(event);
 #endif // TC_WINDOWS
 	}
 
-	void MainFrame::OnHotkeysMenuItemSelected (wxCommandEvent& event)
+	void MainFrame::OnHotkeysMenuItemSelected (wxCommandEvent&)
 	{
 #ifdef TC_MACOSX
 		if (Gui->IsInBackgroundMode())
@@ -1074,7 +1076,7 @@ namespace VeraCrypt
 		dialog.ShowModal();
 	}
 
-	void MainFrame::OnLegalNoticesMenuItemSelected (wxCommandEvent& event)
+	void MainFrame::OnLegalNoticesMenuItemSelected (wxCommandEvent&)
 	{
 #ifdef TC_MACOSX
 		if (Gui->IsInBackgroundMode())
@@ -1090,7 +1092,7 @@ namespace VeraCrypt
 		UpdateControls();
 	}
 
-	void MainFrame::OnListItemActivated (wxListEvent& event)
+	void MainFrame::OnListItemActivated (wxListEvent&)
 	{
 		if (IsMountedSlotSelected())
 			OpenSelectedVolume();
@@ -1104,7 +1106,7 @@ namespace VeraCrypt
 			--SelectedItemIndex;
 	}
 
-	void MainFrame::OnListItemDeselected (wxListEvent& event)
+	void MainFrame::OnListItemDeselected (wxListEvent&)
 	{
 		OnListItemSelectionChanged();
 	}
@@ -1132,6 +1134,8 @@ namespace VeraCrypt
 		}
 
 		ListItemRightClickEventPending = false;
+#else
+		TC_UNUSED(event);
 #endif
 
 		wxMenu popup;
@@ -1189,7 +1193,7 @@ namespace VeraCrypt
 		UpdateControls();
 	}
 
-	void MainFrame::OnManageSecurityTokenKeyfilesMenuItemSelected (wxCommandEvent& event)
+	void MainFrame::OnManageSecurityTokenKeyfilesMenuItemSelected (wxCommandEvent&)
 	{
 		try
 		{
@@ -1206,12 +1210,12 @@ namespace VeraCrypt
 		}
 	}
 
-	void MainFrame::OnMountAllDevicesButtonClick (wxCommandEvent& event)
+	void MainFrame::OnMountAllDevicesButtonClick (wxCommandEvent&)
 	{
 		MountAllDevices();
 	}
 
-	void MainFrame::OnMountAllFavoritesMenuItemSelected (wxCommandEvent& event)
+	void MainFrame::OnMountAllFavoritesMenuItemSelected (wxCommandEvent&)
 	{
 		MountAllFavorites();
 	}
@@ -1232,7 +1236,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void MainFrame::OnOrganizeFavoritesMenuItemSelected (wxCommandEvent& event)
+	void MainFrame::OnOrganizeFavoritesMenuItemSelected (wxCommandEvent&)
 	{
 		try
 		{
@@ -1244,7 +1248,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void MainFrame::OnPreferencesMenuItemSelected (wxCommandEvent& event)
+	void MainFrame::OnPreferencesMenuItemSelected (wxCommandEvent&)
 	{
 #ifdef TC_MACOSX
 		if (Gui->IsInBackgroundMode())
@@ -1269,7 +1273,7 @@ namespace VeraCrypt
 		wxQueueEvent (this, pEvent);
 	}
 
-	void MainFrame::OnPreferencesUpdated (wxCommandEvent& event)
+	void MainFrame::OnPreferencesUpdated (wxCommandEvent&)
 	{
 		const UserPreferences &prefs = GetPreferences();
 
@@ -1282,7 +1286,7 @@ namespace VeraCrypt
 		SavePreferences();
 	}
 
-	void MainFrame::OnRestoreVolumeHeaderMenuItemSelected (wxCommandEvent& event)
+	void MainFrame::OnRestoreVolumeHeaderMenuItemSelected (wxCommandEvent&)
 	{
 		if (!CheckVolumePathNotEmpty ())
 			return;
@@ -1297,7 +1301,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void MainFrame::OnSecurityTokenPreferencesMenuItemSelected (wxCommandEvent& event)
+	void MainFrame::OnSecurityTokenPreferencesMenuItemSelected (wxCommandEvent&)
 	{
 #ifdef TC_MACOSX
 		if (Gui->IsInBackgroundMode())
@@ -1320,7 +1324,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void MainFrame::OnSelectDeviceButtonClick (wxCommandEvent& event)
+	void MainFrame::OnSelectDeviceButtonClick (wxCommandEvent&)
 	{
 		DevicePath path = Gui->SelectDevice (this);
 
@@ -1339,7 +1343,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void MainFrame::OnSelectFileButtonClick (wxCommandEvent& event)
+	void MainFrame::OnSelectFileButtonClick (wxCommandEvent&)
 	{
 		FilePath path = Gui->SelectVolumeFile (this);
 		if (!path.IsEmpty())
@@ -1450,7 +1454,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void MainFrame::OnVolumeButtonClick (wxCommandEvent& event)
+	void MainFrame::OnVolumeButtonClick (wxCommandEvent&)
 	{
 		if (IsMountedSlotSelected())
 			DismountVolume();
@@ -1458,7 +1462,7 @@ namespace VeraCrypt
 			MountVolume();
 	}
 
-	void MainFrame::OnVolumePropertiesButtonClick (wxCommandEvent& event)
+	void MainFrame::OnVolumePropertiesButtonClick (wxCommandEvent&)
 	{
 		shared_ptr <VolumeInfo> selectedVolume = GetSelectedVolume();
 		if (selectedVolume)
@@ -1472,7 +1476,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void MainFrame::OnVolumeToolsButtonClick (wxCommandEvent& event)
+	void MainFrame::OnVolumeToolsButtonClick (wxCommandEvent&)
 	{
 		if (!CheckVolumePathNotEmpty())
 			return;
@@ -1498,7 +1502,7 @@ namespace VeraCrypt
 		PopupMenu (&popup, VolumeToolsButton->GetPosition().x + 2, VolumeToolsButton->GetPosition().y + 2);
 	}
 
-	void MainFrame::OnWipeCacheButtonClick (wxCommandEvent& event)
+	void MainFrame::OnWipeCacheButtonClick (wxCommandEvent&)
 	{
 		WipeCache();
 		Gui->ShowInfo ("PASSWORD_CACHE_WIPED");

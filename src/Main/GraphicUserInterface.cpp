@@ -310,7 +310,7 @@ namespace VeraCrypt
 		window->SetCursor (*arrowWaitCursor);
 	}
 
-	void GraphicUserInterface::CreateKeyfile (shared_ptr <FilePath> keyfilePath) const
+	void GraphicUserInterface::CreateKeyfile (shared_ptr <FilePath> keyfilePath TC_UNUSED_VAR) const
 	{
 		try
 		{
@@ -1032,7 +1032,7 @@ namespace VeraCrypt
 	}
 #endif
 
-	void GraphicUserInterface::OnSignal (int signal)
+	void GraphicUserInterface::OnSignal (int signal TC_UNUSED_VAR)
 	{
 #ifdef TC_UNIX
 		Gui->SingleInstanceChecker.reset();
@@ -1049,7 +1049,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void GraphicUserInterface::OpenDocument (wxWindow *parent, const wxFileName &document)
+	void GraphicUserInterface::OpenDocument (wxWindow *parent TC_UNUSED_VAR, const wxFileName &document)
 	{
 		if (!document.FileExists())
 			throw ParameterIncorrect (SRC_POS);
@@ -1075,7 +1075,7 @@ namespace VeraCrypt
 #endif
 	}
 
-	wxString GraphicUserInterface::GetHomepageLinkURL (const wxString &linkId, bool secure, const wxString &extraVars) const
+	wxString GraphicUserInterface::GetHomepageLinkURL (const wxString &linkId, bool secure, const wxString &extraVars TC_UNUSED_VAR) const
 	{
 		wxString url = wxString (StringConverter::ToWide (secure ? TC_APPLINK_SECURE : TC_APPLINK));
 
@@ -1699,10 +1699,13 @@ namespace VeraCrypt
 	void GraphicUserInterface::SetListCtrlWidth (wxListCtrl *listCtrl, size_t charCount, bool hasVerticalScrollbar) const
 	{
 		int width = GetCharWidth (listCtrl) * static_cast<int>(charCount);
-#ifdef TC_MACOSX
+
 		if (!hasVerticalScrollbar)
-			width += GetScrollbarWidth (listCtrl);
-#endif
+		{
+			#ifdef TC_MACOSX
+				width += GetScrollbarWidth (listCtrl);
+			#endif
+		}
 		listCtrl->SetMinSize (wxSize (width, listCtrl->GetMinSize().GetHeight()));
 	}
 

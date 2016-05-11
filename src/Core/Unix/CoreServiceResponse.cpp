@@ -16,7 +16,7 @@
 namespace VeraCrypt
 {
 	// CheckFilesystemResponse
-	void CheckFilesystemResponse::Deserialize (shared_ptr <Stream> stream)
+	void CheckFilesystemResponse::Deserialize (shared_ptr <Stream> stream TC_UNUSED_VAR)
 	{
 	}
 
@@ -26,7 +26,7 @@ namespace VeraCrypt
 	}
 
 	// DismountFilesystemResponse
-	void DismountFilesystemResponse::Deserialize (shared_ptr <Stream> stream)
+	void DismountFilesystemResponse::Deserialize (shared_ptr <Stream> stream TC_UNUSED_VAR)
 	{
 	}
 
@@ -103,7 +103,7 @@ namespace VeraCrypt
 	}
 
 	// SetFileOwnerResponse
-	void SetFileOwnerResponse::Deserialize (shared_ptr <Stream> stream)
+	void SetFileOwnerResponse::Deserialize (shared_ptr <Stream> stream TC_UNUSED_VAR)
 	{
 	}
 

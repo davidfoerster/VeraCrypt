@@ -67,7 +67,7 @@ namespace VeraCrypt
 		return true;
 	}
 
-	void VolumePimWizardPage::OnPimChanged  (wxCommandEvent& event)
+	void VolumePimWizardPage::OnPimChanged  (wxCommandEvent&)
 	{
 		OnPimValueChanged (GetVolumePim ());
 	}

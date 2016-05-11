@@ -26,7 +26,7 @@ namespace VeraCrypt
 		return false;
 	}
 
-	void SelectDirectoryWizardPage::OnBrowseButtonClick (wxCommandEvent& event)
+	void SelectDirectoryWizardPage::OnBrowseButtonClick (wxCommandEvent&)
 	{
 		DirectoryPath dir = Gui->SelectDirectory (this);
 

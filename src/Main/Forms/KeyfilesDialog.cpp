@@ -36,12 +36,12 @@ namespace VeraCrypt
 		Center();
 	}
 
-	void KeyfilesDialog::OnCreateKeyfileButttonClick (wxCommandEvent& event)
+	void KeyfilesDialog::OnCreateKeyfileButttonClick (wxCommandEvent&)
 	{
 		Gui->CreateKeyfile();
 	}
 
-	void KeyfilesDialog::OnKeyfilesHyperlinkClick (wxHyperlinkEvent& event)
+	void KeyfilesDialog::OnKeyfilesHyperlinkClick (wxHyperlinkEvent&)
 	{
 		Gui->OpenHomepageLink (this, L"keyfiles");
 	}

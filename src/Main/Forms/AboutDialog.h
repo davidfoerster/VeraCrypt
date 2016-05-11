@@ -22,7 +22,7 @@ namespace VeraCrypt
 	public:
 		AboutDialog (wxWindow* parent);
 
-		void OnWebsiteHyperlinkClick (wxHyperlinkEvent& event) { Gui->OpenHomepageLink (this, L"main"); }
+		void OnWebsiteHyperlinkClick (wxHyperlinkEvent&) { Gui->OpenHomepageLink (this, L"main"); }
 	};
 }
 

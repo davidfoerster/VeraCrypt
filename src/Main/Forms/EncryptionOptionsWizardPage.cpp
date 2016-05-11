@@ -55,7 +55,7 @@ namespace VeraCrypt
 		return Gui->GetSelectedData <Hash> (HashChoice)->GetNew();
 	}
 
-	void EncryptionOptionsWizardPage::OnBenchmarkButtonClick (wxCommandEvent& event)
+	void EncryptionOptionsWizardPage::OnBenchmarkButtonClick (wxCommandEvent&)
 	{
 		BenchmarkDialog dialog (this);
 		dialog.ShowModal();
@@ -105,7 +105,7 @@ namespace VeraCrypt
 		Layout();
 	}
 
-	void EncryptionOptionsWizardPage::OnEncryptionAlgorithmHyperlinkClick (wxHyperlinkEvent& event)
+	void EncryptionOptionsWizardPage::OnEncryptionAlgorithmHyperlinkClick (wxHyperlinkEvent&)
 	{
 		if (GetEncryptionAlgorithm()->GetCiphers().size() == 1)
 			Gui->OpenHomepageLink (this, wxString (GetEncryptionAlgorithm()->GetName()).Lower());
@@ -113,12 +113,12 @@ namespace VeraCrypt
 			Gui->OpenHomepageLink (this, L"cascades");
 	}
 
-	void EncryptionOptionsWizardPage::OnHashHyperlinkClick (wxHyperlinkEvent& event)
+	void EncryptionOptionsWizardPage::OnHashHyperlinkClick (wxHyperlinkEvent&)
 	{
 		Gui->OpenHomepageLink (this, L"hashalgorithms");
 	}
 
-	void EncryptionOptionsWizardPage::OnTestButtonClick (wxCommandEvent& event)
+	void EncryptionOptionsWizardPage::OnTestButtonClick (wxCommandEvent&)
 	{
 		EncryptionTestDialog dialog (this);
 		dialog.ShowModal();

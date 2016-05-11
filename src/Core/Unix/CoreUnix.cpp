@@ -96,10 +96,12 @@ namespace VeraCrypt
 	{
 		list <string> args;
 
-#ifdef TC_MACOSX
 		if (force)
-			args.push_back ("-f");
-#endif
+		{
+			#ifdef TC_MACOSX
+				args.push_back ("-f");
+			#endif
+		}
 		args.push_back ("--");
 		args.push_back (mountPoint);
 

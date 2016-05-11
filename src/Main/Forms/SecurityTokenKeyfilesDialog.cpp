@@ -69,7 +69,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void SecurityTokenKeyfilesDialog::OnDeleteButtonClick (wxCommandEvent& event)
+	void SecurityTokenKeyfilesDialog::OnDeleteButtonClick (wxCommandEvent&)
 	{
 		try
 		{
@@ -91,7 +91,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void SecurityTokenKeyfilesDialog::OnExportButtonClick (wxCommandEvent& event)
+	void SecurityTokenKeyfilesDialog::OnExportButtonClick (wxCommandEvent&)
 	{
 		try
 		{
@@ -127,7 +127,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void SecurityTokenKeyfilesDialog::OnImportButtonClick (wxCommandEvent& event)
+	void SecurityTokenKeyfilesDialog::OnImportButtonClick (wxCommandEvent&)
 	{
 		try
 		{
@@ -168,7 +168,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void SecurityTokenKeyfilesDialog::OnListItemDeselected (wxListEvent& event)
+	void SecurityTokenKeyfilesDialog::OnListItemDeselected (wxListEvent&)
 	{
 		if (SecurityTokenKeyfileListCtrl->GetSelectedItemCount() == 0)
 		{

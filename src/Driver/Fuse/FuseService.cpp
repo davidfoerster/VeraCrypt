@@ -36,7 +36,7 @@
 
 namespace VeraCrypt
 {
-	static int fuse_service_access (const char *path, int mask)
+	static int fuse_service_access (const char *path TC_UNUSED_VAR, int mask TC_UNUSED_VAR)
 	{
 		try
 		{
@@ -79,7 +79,7 @@ namespace VeraCrypt
 		return nullptr;
 	}
 
-	static void fuse_service_destroy (void *userdata)
+	static void fuse_service_destroy (void *userdata TC_UNUSED_VAR)
 	{
 		try
 		{
@@ -143,7 +143,7 @@ namespace VeraCrypt
 		return 0;
 	}
 
-	static int fuse_service_opendir (const char *path, struct fuse_file_info *fi)
+	static int fuse_service_opendir (const char *path, struct fuse_file_info *)
 	{
 		try
 		{
@@ -184,7 +184,7 @@ namespace VeraCrypt
 		return -ENOENT;
 	}
 
-	static int fuse_service_read (const char *path, char *buf, size_t size, off_t offset, struct fuse_file_info *fi)
+	static int fuse_service_read (const char *path, char *buf, size_t size, off_t offset, struct fuse_file_info *)
 	{
 		try
 		{
@@ -252,7 +252,7 @@ namespace VeraCrypt
 		return -ENOENT;
 	}
 
-	static int fuse_service_readdir (const char *path, void *buf, fuse_fill_dir_t filler, off_t offset, struct fuse_file_info *fi)
+	static int fuse_service_readdir (const char *path, void *buf, fuse_fill_dir_t filler, off_t offset TC_UNUSED_VAR, struct fuse_file_info *)
 	{
 		try
 		{
@@ -275,7 +275,7 @@ namespace VeraCrypt
 		return 0;
 	}
 
-	static int fuse_service_write (const char *path, const char *buf, size_t size, off_t offset, struct fuse_file_info *fi)
+	static int fuse_service_write (const char *path, const char *buf, size_t size, off_t offset, struct fuse_file_info *)
 	{
 		try
 		{
@@ -499,7 +499,7 @@ namespace VeraCrypt
 		MountedVolume->WriteSectors (buffer, byteOffset);
 	}
 
-	void FuseService::OnSignal (int signal)
+	void FuseService::OnSignal (int signal TC_UNUSED_VAR)
 	{
 		try
 		{

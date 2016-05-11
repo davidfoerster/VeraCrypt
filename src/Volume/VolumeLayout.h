@@ -73,7 +73,7 @@ namespace VeraCrypt
 		virtual int GetBackupHeaderOffset () const { throw NotApplicable (SRC_POS); }
 		virtual uint64 GetDataOffset (uint64 volumeHostSize) const;
 		virtual uint64 GetDataSize (uint64 volumeHostSize) const;
-		virtual uint64 GetMaxDataSize (uint64 volumeSize) const { throw NotApplicable (SRC_POS); }
+		virtual uint64 GetMaxDataSize (uint64 volumeSize TC_UNUSED_VAR) const { throw NotApplicable (SRC_POS); }
 		virtual bool HasBackupHeader () const { return false; }
 
 	private:
@@ -125,7 +125,7 @@ namespace VeraCrypt
 		virtual int GetBackupHeaderOffset () const { throw NotApplicable (SRC_POS); }
 		virtual uint64 GetDataOffset (uint64 volumeHostSize) const;
 		virtual uint64 GetDataSize (uint64 volumeHostSize) const;
-		virtual uint64 GetMaxDataSize (uint64 volumeSize) const { throw NotApplicable (SRC_POS); }
+		virtual uint64 GetMaxDataSize (uint64 volumeSize TC_UNUSED_VAR) const { throw NotApplicable (SRC_POS); }
 		virtual Pkcs5KdfList GetSupportedKeyDerivationFunctions (bool truecryptMode) const;
 		virtual bool HasBackupHeader () const { return false; }
 		virtual bool HasDriveHeader () const { return true; }

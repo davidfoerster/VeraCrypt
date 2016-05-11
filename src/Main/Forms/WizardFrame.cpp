@@ -71,12 +71,12 @@ namespace VeraCrypt
 		event.Skip();
 	}
 
-	void WizardFrame::OnHelpButtonClick (wxCommandEvent& event)
+	void WizardFrame::OnHelpButtonClick (wxCommandEvent&)
 	{
 		Gui->OpenUserGuide (this);
 	}
 
-	void WizardFrame::OnNextButtonClick (wxCommandEvent& event)
+	void WizardFrame::OnNextButtonClick (wxCommandEvent&)
 	{
 		if (CurrentPage->IsValid())
 		{
@@ -86,7 +86,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void WizardFrame::OnPreviousButtonClick (wxCommandEvent& event)
+	void WizardFrame::OnPreviousButtonClick (wxCommandEvent&)
 	{
 		ProcessPageChangeRequest (false);
 

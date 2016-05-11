@@ -28,12 +28,12 @@ namespace VeraCrypt
 	protected:
 		void OnInitDialog (wxInitDialogEvent& event);
 		void OnMountPointButtonClick (wxCommandEvent& event);
-		void OnNoFilesystemCheckBoxClick (wxCommandEvent& event) { UpdateDialog(); }
+		void OnNoFilesystemCheckBoxClick (wxCommandEvent&) { UpdateDialog(); }
 		void OnOKButtonClick (wxCommandEvent& event);
 		void OnOptionsButtonClick (wxCommandEvent& event);
 		void OnProtectionCheckBoxClick (wxCommandEvent& event);
 		void OnProtectionHyperlinkClick (wxHyperlinkEvent& event);
-		void OnReadOnlyCheckBoxClick (wxCommandEvent& event) { UpdateDialog(); }
+		void OnReadOnlyCheckBoxClick (wxCommandEvent&) { UpdateDialog(); }
 		void UpdateDialog ();
 
 		MountOptions &Options;

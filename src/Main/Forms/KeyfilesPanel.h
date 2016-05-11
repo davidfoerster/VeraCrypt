@@ -29,8 +29,8 @@ namespace VeraCrypt
 		void OnAddFilesButtonClick (wxCommandEvent& event);
 		void OnAddDirectoryButtonClick (wxCommandEvent& event);
 		void OnAddSecurityTokenSignatureButtonClick (wxCommandEvent& event);
-		void OnListItemDeselected (wxListEvent& event) { UpdateButtons(); }
-		void OnListItemSelected (wxListEvent& event) { UpdateButtons(); }
+		void OnListItemDeselected (wxListEvent&) { UpdateButtons(); }
+		void OnListItemSelected (wxListEvent&) { UpdateButtons(); }
 		void OnListSizeChanged (wxSizeEvent& event);
 		void OnRemoveButtonClick (wxCommandEvent& event);
 		void OnRemoveAllButtonClick (wxCommandEvent& event);

@@ -25,7 +25,7 @@ namespace VeraCrypt
 		shared_ptr <EncryptionAlgorithm> GetEncryptionAlgorithm () const;
 		shared_ptr <Hash> GetHash () const;
 		bool IsValid () { return true; }
-		void SetPageText (const wxString &text) { }
+		void SetPageText (const wxString &text TC_UNUSED_VAR) { }
 		void SetEncryptionAlgorithm (shared_ptr <EncryptionAlgorithm> algorithm);
 		void SetHash (shared_ptr <Hash> hash);
 
@@ -33,7 +33,7 @@ namespace VeraCrypt
 		void OnBenchmarkButtonClick (wxCommandEvent& event);
 		void OnEncryptionAlgorithmHyperlinkClick (wxHyperlinkEvent& event);
 		void OnEncryptionAlgorithmSelected ();
-		void OnEncryptionAlgorithmSelected (wxCommandEvent& event) { OnEncryptionAlgorithmSelected(); }
+		void OnEncryptionAlgorithmSelected (wxCommandEvent&) { OnEncryptionAlgorithmSelected(); }
 		void OnHashHyperlinkClick (wxHyperlinkEvent& event);
 		void OnTestButtonClick (wxCommandEvent& event);
 

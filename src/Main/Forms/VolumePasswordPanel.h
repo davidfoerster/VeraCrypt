@@ -56,11 +56,11 @@ namespace VeraCrypt
 		void OnKeyfilesButtonClick (wxCommandEvent& event);
 		void OnKeyfilesButtonRightClick (wxMouseEvent& event);
 		void OnKeyfilesButtonRightDown (wxMouseEvent& event);
-		void OnTextChanged (wxCommandEvent& event) { OnUpdate(); }
-		void OnPimChanged  (wxCommandEvent& event) { OnUpdate(); }
+		void OnTextChanged (wxCommandEvent&) { OnUpdate(); }
+		void OnPimChanged  (wxCommandEvent&) { OnUpdate(); }
 		void OnUsePimCheckBoxClick( wxCommandEvent& event );
 		void OnUpdate () { UpdateEvent.Raise(); }
-		void OnUseKeyfilesCheckBoxClick (wxCommandEvent& event) { OnUpdate(); }
+		void OnUseKeyfilesCheckBoxClick (wxCommandEvent&) { OnUpdate(); }
 		void WipeTextCtrl (wxTextCtrl *textCtrl);
 		void OnTrueCryptModeChecked( wxCommandEvent& event );
 

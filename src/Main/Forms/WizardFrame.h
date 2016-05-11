@@ -33,7 +33,7 @@ namespace VeraCrypt
 		WizardStep GetCurrentStep () const { return CurrentStep; }
 		wxPanel *GetPageParent () const { return MainPanel; }
 		bool IsWorkInProgress() const { return WorkInProgress; }
-		virtual void OnCancelButtonClick (wxCommandEvent& event) { Close(); }
+		virtual void OnCancelButtonClick (wxCommandEvent&) { Close(); }
 		virtual void OnClose (wxCloseEvent& event);
 		virtual void OnHelpButtonClick (wxCommandEvent& event);
 		virtual WizardStep ProcessPageChangeRequest (bool forward) = 0;
@@ -46,7 +46,7 @@ namespace VeraCrypt
 	private:
 		void OnActivate (wxActivateEvent& event);
 		void OnNextButtonClick (wxCommandEvent& event);
-		void OnPageUpdated (EventArgs &args) { UpdateControls(); }
+		void OnPageUpdated (EventArgs &) { UpdateControls(); }
 		void OnPreviousButtonClick (wxCommandEvent& event);
 		void SetStep (WizardStep newStep, bool forward);
 		void UpdateControls ();

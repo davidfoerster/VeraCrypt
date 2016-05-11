@@ -62,7 +62,7 @@ namespace VeraCrypt
 		Center();
 	}
 
-	void BenchmarkDialog::OnBenchmarkButtonClick (wxCommandEvent& event)
+	void BenchmarkDialog::OnBenchmarkButtonClick (wxCommandEvent&)
 	{
 		list <BenchmarkResult> results;
 

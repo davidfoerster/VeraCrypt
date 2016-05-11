@@ -39,7 +39,7 @@ namespace VeraCrypt
 	protected:
 		void OnOKButtonClick (wxCommandEvent& event);
 		void OnPasswordPanelUpdate ();
-		void OnPasswordPanelUpdate (EventArgs &args) { OnPasswordPanelUpdate(); }
+		void OnPasswordPanelUpdate (EventArgs &) { OnPasswordPanelUpdate(); }
 
 		Mode::Enum DialogMode;
 

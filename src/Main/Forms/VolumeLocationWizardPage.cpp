@@ -73,12 +73,12 @@ namespace VeraCrypt
 		}
 	}
 
-	void VolumeLocationWizardPage::OnPreferencesUpdated (EventArgs &args)
+	void VolumeLocationWizardPage::OnPreferencesUpdated (EventArgs &)
 	{
 		NoHistoryCheckBox->SetValue (!Gui->GetPreferences().SaveHistory);
 	}
 
-	void VolumeLocationWizardPage::OnSelectFileButtonClick (wxCommandEvent& event)
+	void VolumeLocationWizardPage::OnSelectFileButtonClick (wxCommandEvent&)
 	{
 		FilePath path = Gui->SelectVolumeFile (this, !SelectExisting);
 
@@ -86,7 +86,7 @@ namespace VeraCrypt
 			SetVolumePath (path);
 	}
 
-	void VolumeLocationWizardPage::OnSelectDeviceButtonClick (wxCommandEvent& event)
+	void VolumeLocationWizardPage::OnSelectDeviceButtonClick (wxCommandEvent&)
 	{
 		DevicePath path = Gui->SelectDevice (this);
 

@@ -77,7 +77,7 @@ namespace VeraCrypt
 		NewPasswordPanel->UpdateEvent.Disconnect (this);
 	}
 
-	void ChangePasswordDialog::OnOKButtonClick (wxCommandEvent& event)
+	void ChangePasswordDialog::OnOKButtonClick (wxCommandEvent&)
 	{
 		// Avoid a GTK bug
 		if (!OKButton->IsEnabled())

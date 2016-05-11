@@ -77,7 +77,7 @@ namespace VeraCrypt
 		SupportedEncryptionModes.push_back (shared_ptr <EncryptionMode> (new EncryptionModeXTS ()));
 	}
 
-	uint64 VolumeLayoutV1Normal::GetDataOffset (uint64 volumeHostSize) const
+	uint64 VolumeLayoutV1Normal::GetDataOffset (uint64 volumeHostSize TC_UNUSED_VAR) const
 	{
 		return HeaderSize;
 	}
@@ -107,12 +107,12 @@ namespace VeraCrypt
 		SupportedEncryptionModes.push_back (shared_ptr <EncryptionMode> (new EncryptionModeXTS ()));
 	}
 
-	uint64 VolumeLayoutV2Normal::GetDataOffset (uint64 volumeHostSize) const
+	uint64 VolumeLayoutV2Normal::GetDataOffset (uint64 volumeHostSize TC_UNUSED_VAR) const
 	{
 		return Header->GetEncryptedAreaStart();
 	}
 
-	uint64 VolumeLayoutV2Normal::GetDataSize (uint64 volumeHostSize) const
+	uint64 VolumeLayoutV2Normal::GetDataSize (uint64 volumeHostSize TC_UNUSED_VAR) const
 	{
 		return Header->GetVolumeDataSize();
 	}
@@ -145,12 +145,12 @@ namespace VeraCrypt
 		SupportedEncryptionModes.push_back (shared_ptr <EncryptionMode> (new EncryptionModeXTS ()));
 	}
 
-	uint64 VolumeLayoutV2Hidden::GetDataOffset (uint64 volumeHostSize) const
+	uint64 VolumeLayoutV2Hidden::GetDataOffset (uint64 volumeHostSize TC_UNUSED_VAR) const
 	{
 		return Header->GetEncryptedAreaStart();
 	}
 
-	uint64 VolumeLayoutV2Hidden::GetDataSize (uint64 volumeHostSize) const
+	uint64 VolumeLayoutV2Hidden::GetDataSize (uint64 volumeHostSize TC_UNUSED_VAR) const
 	{
 		return Header->GetVolumeDataSize();
 	}
@@ -190,7 +190,7 @@ namespace VeraCrypt
 		SupportedEncryptionModes.push_back (shared_ptr <EncryptionMode> (new EncryptionModeXTS ()));
 	}
 
-	uint64 VolumeLayoutSystemEncryption::GetDataOffset (uint64 volumeHostSize) const
+	uint64 VolumeLayoutSystemEncryption::GetDataOffset (uint64 volumeHostSize TC_UNUSED_VAR) const
 	{
 		return 0;
 	}

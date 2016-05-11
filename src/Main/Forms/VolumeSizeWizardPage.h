@@ -42,8 +42,8 @@ namespace VeraCrypt
 		};
 
 		void OnBrowseButtonClick (wxCommandEvent& event);
-		void OnVolumeSizePrefixSelected (wxCommandEvent& event) { PageUpdatedEvent.Raise(); }
-		void OnVolumeSizeTextChanged (wxCommandEvent& event) { PageUpdatedEvent.Raise(); }
+		void OnVolumeSizePrefixSelected (wxCommandEvent&) { PageUpdatedEvent.Raise(); }
+		void OnVolumeSizeTextChanged (wxCommandEvent&) { PageUpdatedEvent.Raise(); }
 
 		uint64 MaxVolumeSize;
 		bool MaxVolumeSizeValid;

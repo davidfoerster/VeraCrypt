@@ -154,7 +154,7 @@ namespace VeraCrypt
 		buffer.CopyFrom (ConstBufferPtr (&data.front(), data.size()));
 	}
 
-	void EncryptionTestDialog::OnAutoTestAllButtonClick (wxCommandEvent& event)
+	void EncryptionTestDialog::OnAutoTestAllButtonClick (wxCommandEvent&)
 	{
 		try
 		{

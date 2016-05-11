@@ -186,7 +186,7 @@ namespace VeraCrypt
 		return length;
 	}
 
-	void File::Open (const FilePath &path, FileOpenMode mode, FileShareMode shareMode, FileOpenFlags flags)
+	void File::Open (const FilePath &path, FileOpenMode mode, FileShareMode shareMode TC_UNUSED_VAR, FileOpenFlags flags)
 	{
 #ifdef TC_LINUX
 		int sysFlags = O_LARGEFILE;

@@ -36,7 +36,7 @@ namespace VeraCrypt
 		void SetPageText (const wxString &text) { InfoStaticText->SetLabel (text); }
 
 	protected:
-		void OnPasswordPanelUpdate (EventArgs &args) { PageUpdatedEvent.Raise(); }
+		void OnPasswordPanelUpdate (EventArgs &) { PageUpdatedEvent.Raise(); }
 
 		bool ConfirmationMode;
 		VolumePasswordPanel *PasswordPanel;

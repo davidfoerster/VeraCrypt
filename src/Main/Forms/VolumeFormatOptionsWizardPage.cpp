@@ -57,7 +57,7 @@ namespace VeraCrypt
 		return (VolumeCreationOptions::FilesystemType::Enum) reinterpret_cast <unsigned long long> (Gui->GetSelectedData <void> (FilesystemTypeChoice));
 	}
 
-	void VolumeFormatOptionsWizardPage::OnFilesystemTypeSelected (wxCommandEvent& event)
+	void VolumeFormatOptionsWizardPage::OnFilesystemTypeSelected (wxCommandEvent&)
 	{
 	}
 

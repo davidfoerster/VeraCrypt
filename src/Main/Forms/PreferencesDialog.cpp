@@ -239,7 +239,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void PreferencesDialog::OnAssignHotkeyButtonClick (wxCommandEvent& event)
+	void PreferencesDialog::OnAssignHotkeyButtonClick (wxCommandEvent&)
 	{
 #ifdef TC_WINDOWS
 		foreach (long item, Gui->GetListCtrlSelectedItems (HotkeyListCtrl))
@@ -344,19 +344,19 @@ namespace VeraCrypt
 			ForceAutoDismountCheckBox->SetValue (!Gui->AskYesNo (LangString["CONFIRM_NO_FORCED_AUTODISMOUNT"], false, true));
 	}
 
-	void PreferencesDialog::OnHotkeyListItemDeselected (wxListEvent& event)
+	void PreferencesDialog::OnHotkeyListItemDeselected (wxListEvent&)
 	{
 		UpdateHotkeyButtons();
 	}
 
-	void PreferencesDialog::OnHotkeyListItemSelected (wxListEvent& event)
+	void PreferencesDialog::OnHotkeyListItemSelected (wxListEvent&)
 	{
 		UpdateHotkeyButtons();
 		HotkeyTextCtrl->ChangeValue (LangString ["PRESS_A_KEY_TO_ASSIGN"]);
 		AssignHotkeyButton->Enable (false);
 	}
 
-	void PreferencesDialog::OnOKButtonClick (wxCommandEvent& event)
+	void PreferencesDialog::OnOKButtonClick (wxCommandEvent&)
 	{
 #ifdef TC_WINDOWS
 		HotkeyTextCtrl->SetValidator (wxTextValidator (wxFILTER_NONE));
@@ -428,7 +428,7 @@ namespace VeraCrypt
 #endif
 	}
 
-	void PreferencesDialog::OnRemoveHotkeyButtonClick (wxCommandEvent& event)
+	void PreferencesDialog::OnRemoveHotkeyButtonClick (wxCommandEvent&)
 	{
 #ifdef TC_WINDOWS
 		foreach (long item, Gui->GetListCtrlSelectedItems (HotkeyListCtrl))
@@ -447,7 +447,7 @@ namespace VeraCrypt
 #endif
 	}
 
-	void PreferencesDialog::OnSelectPkcs11ModuleButtonClick (wxCommandEvent& event)
+	void PreferencesDialog::OnSelectPkcs11ModuleButtonClick (wxCommandEvent&)
 	{
 		list < pair <wstring, wstring> > extensions;
 		wxString libExtension;

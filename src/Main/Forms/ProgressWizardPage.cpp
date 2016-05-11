@@ -50,7 +50,7 @@ namespace VeraCrypt
 		mTimer->Start (30);
 	}
 
-	void ProgressWizardPage::OnAbortButtonClick (wxCommandEvent& event)
+	void ProgressWizardPage::OnAbortButtonClick (wxCommandEvent&)
 	{
 		AbortEvent.Raise();
 	}

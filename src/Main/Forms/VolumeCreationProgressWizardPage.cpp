@@ -64,7 +64,7 @@ namespace VeraCrypt
 
 	}
 
-	void VolumeCreationProgressWizardPage::OnAbortButtonClick (wxCommandEvent& event)
+	void VolumeCreationProgressWizardPage::OnAbortButtonClick (wxCommandEvent&)
 	{
 		AbortEvent.Raise();
 	}

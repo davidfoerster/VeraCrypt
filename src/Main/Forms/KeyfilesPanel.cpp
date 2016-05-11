@@ -41,12 +41,12 @@ namespace VeraCrypt
 		public:
 			FileDropTarget (KeyfilesPanel *panel) : Panel (panel) { }
 
-			wxDragResult OnDragOver (wxCoord x, wxCoord y, wxDragResult def)
+			wxDragResult OnDragOver (wxCoord, wxCoord, wxDragResult)
 			{
 				return wxDragLink;
 			}
 
-			bool OnDropFiles (wxCoord x, wxCoord y, const wxArrayString &filenames)
+			bool OnDropFiles (wxCoord, wxCoord, const wxArrayString &filenames)
 			{
 				foreach (const wxString &f, filenames)
 					Panel->AddKeyfile (make_shared <Keyfile> (wstring (f)));
@@ -85,7 +85,7 @@ namespace VeraCrypt
 		return keyfiles;
 	}
 
-	void KeyfilesPanel::OnAddDirectoryButtonClick (wxCommandEvent& event)
+	void KeyfilesPanel::OnAddDirectoryButtonClick (wxCommandEvent&)
 	{
 		DirectoryPath dir = Gui->SelectDirectory (this, LangString["SELECT_KEYFILE_PATH"]);
 		if (!dir.IsEmpty())
@@ -97,7 +97,7 @@ namespace VeraCrypt
 		}
 	}
 
-	void KeyfilesPanel::OnAddFilesButtonClick (wxCommandEvent& event)
+	void KeyfilesPanel::OnAddFilesButtonClick (wxCommandEvent&)
 	{
 		FilePathList files = Gui->SelectFiles (this, LangString["SELECT_KEYFILES"], false, true);
 
@@ -110,7 +110,7 @@ namespace VeraCrypt
 		UpdateButtons();
 	}
 
-	void KeyfilesPanel::OnAddSecurityTokenSignatureButtonClick (wxCommandEvent& event)
+	void KeyfilesPanel::OnAddSecurityTokenSignatureButtonClick (wxCommandEvent&)
 	{
 		try
 		{
@@ -141,13 +141,13 @@ namespace VeraCrypt
 		event.Skip();
 	}
 
-	void KeyfilesPanel::OnRemoveAllButtonClick (wxCommandEvent& event)
+	void KeyfilesPanel::OnRemoveAllButtonClick (wxCommandEvent&)
 	{
 		KeyfilesListCtrl->DeleteAllItems();
 		UpdateButtons();
 	}
 
-	void KeyfilesPanel::OnRemoveButtonClick (wxCommandEvent& event)
+	void KeyfilesPanel::OnRemoveButtonClick (wxCommandEvent&)
 	{
 		long offset = 0;
 		foreach (long item, Gui->GetListCtrlSelectedItems (KeyfilesListCtrl))

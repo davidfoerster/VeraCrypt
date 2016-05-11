@@ -27,10 +27,10 @@ namespace VeraCrypt
 
 		wxString GetPageTitle () const { return PageTitle; }
 		virtual bool IsValid () = 0;
-		virtual void OnPageChanging (bool forward) { }
+		virtual void OnPageChanging (bool forward TC_UNUSED_VAR) { }
 		wxString GetNextButtonText () const { return NextButtonText; }
 		void SetNextButtonText (const wxString &text) { NextButtonText = text; }
-		virtual void SetMaxStaticTextWidth (int width) { }
+		virtual void SetMaxStaticTextWidth (int width TC_UNUSED_VAR) { }
 		void SetPageTitle (const wxString &title) { PageTitle = title; }
 		virtual void SetPageText (const wxString &text) = 0;
 

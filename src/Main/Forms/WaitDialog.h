@@ -72,7 +72,7 @@ namespace VeraCrypt
 			Disconnect( wxID_ANY, wxEVT_COMMAND_WAITDIALOG_SHOW_MSG, wxCommandEventHandler( WaitDialog::OnShowMsg ) );
 		}
 
-		virtual void OnWaitDialogInit( wxInitDialogEvent& event )
+		virtual void OnWaitDialogInit( wxInitDialogEvent& )
 		{
 			m_thread->Run();
 			m_timer.Start(100);
@@ -191,7 +191,7 @@ namespace VeraCrypt
 			m_queue.Post(wxString::Format(wxT("%d"), iResult));
 		}
 
-		void OnProgressTimer(wxTimerEvent& event)
+		void OnProgressTimer(wxTimerEvent&)
 		{
 			WaitProgessBar->Pulse();
 		}
