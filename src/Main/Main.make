@@ -96,6 +96,10 @@ ifeq "$(TC_BUILD_CONFIG)" "Release"
 CXXFLAGS += $(patsubst -I%, -isystem%, $(shell $(WX_CONFIG) $(WX_CONFIG_ARGS) --cxxflags))
 WX_LIBS = $(shell $(WX_CONFIG) $(WX_CONFIG_ARGS) --libs $(WX_CONFIG_LIBS))
 
+ifndef NOSTRIP
+LFLAGS += -s
+endif
+
 else
 
 CXXFLAGS += $(patsubst -I%, -isystem%, $(shell $(WX_CONFIG) --debug $(WX_CONFIG_ARGS) --cxxflags))
@@ -135,10 +139,6 @@ $(APPNAME): $(LIBS) $(OBJS)
 	$(CXX) -o $(APPNAME) $(OBJS) $(LIBS) $(FUSE_LIBS) $(WX_LIBS) $(LFLAGS)
 
 ifeq "$(TC_BUILD_CONFIG)" "Release"
-ifndef NOSTRIP
-	strip $(APPNAME)
-endif
-
 ifndef NOTEST
 	./$(APPNAME) --text --test >/dev/null || exit 1
 endif
