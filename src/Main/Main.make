@@ -194,39 +194,33 @@ endif
 
 ifeq "$(PLATFORM)" "Linux"
 ifeq "$(TC_BUILD_CONFIG)" "Release"
-	mkdir -p $(PWD)/Setup/Linux/usr/bin
-	mkdir -p $(PWD)/Setup/Linux/usr/share/$(APPNAME)/doc
-	cp $(PWD)/Main/$(APPNAME) $(PWD)/Setup/Linux/usr/bin/$(APPNAME)
-	cp $(PWD)/Setup/Linux/$(APPNAME)-uninstall.sh $(PWD)/Setup/Linux/usr/bin/$(APPNAME)-uninstall.sh
-	chmod +x $(PWD)/Setup/Linux/usr/bin/$(APPNAME)-uninstall.sh
-	cp $(PWD)/License.txt $(PWD)/Setup/Linux/usr/share/$(APPNAME)/doc/License.txt
-	cp "$(PWD)/Release/Setup Files/VeraCrypt User Guide.pdf" "$(PWD)/Setup/Linux/usr/share/$(APPNAME)/doc/VeraCrypt User Guide.pdf"
+	install -d "$(PWD)/Setup/Linux/usr/bin" "$(PWD)/Setup/Linux/usr/share/$(APPNAME)/doc"
+	install -m 0755 -t "$(PWD)/Setup/Linux/usr/bin" \
+		"$(PWD)/Main/$(APPNAME)" "$(PWD)/Setup/Linux/$(APPNAME)-uninstall.sh"
+	install -t "$(PWD)/Setup/Linux/usr/share/$(APPNAME)/doc" \
+		"$(PWD)/License.txt" "$(PWD)/Release/Setup Files/VeraCrypt User Guide.pdf"
 
 ifndef TC_NO_GUI
-	mkdir -p $(PWD)/Setup/Linux/usr/share/applications
-	mkdir -p $(PWD)/Setup/Linux/usr/share/pixmaps
-	cp $(PWD)/Resources/Icons/VeraCrypt-256x256.xpm $(PWD)/Setup/Linux/usr/share/pixmaps/$(APPNAME).xpm
-	cp $(PWD)/Setup/Linux/$(APPNAME).desktop $(PWD)/Setup/Linux/usr/share/applications/$(APPNAME).desktop
+	install -DT "$(PWD)/Resources/Icons/VeraCrypt-256x256.xpm" "$(PWD)/Setup/Linux/usr/share/pixmaps/$(APPNAME).xpm"
+	install -DT "$(PWD)/Setup/Linux/$(APPNAME).desktop" "$(PWD)/Setup/Linux/usr/share/applications/$(APPNAME).desktop"
 endif
 
 
 	tar cfz $(PWD)/Setup/Linux/$(PACKAGE_NAME) --directory $(PWD)/Setup/Linux usr
 
-	@rm -fr $(INTERNAL_INSTALLER_NAME)
-	@echo "#!/bin/sh" > $(INTERNAL_INSTALLER_NAME)
-	@echo "VERSION=$(TC_VERSION)" >> $(INTERNAL_INSTALLER_NAME)
-	@echo "PACKAGE_TYPE=tar" >> $(INTERNAL_INSTALLER_NAME)
-	@echo "PACKAGE_NAME=$(PACKAGE_NAME)" >> $(INTERNAL_INSTALLER_NAME)
-	@echo "PACKAGE_START=1107" >> $(INTERNAL_INSTALLER_NAME)
-	@echo "INSTALLER_TYPE=$(INSTALLER_TYPE)" >> $(INTERNAL_INSTALLER_NAME)
-
-	@cat $(PWD)/Setup/Linux/veracrypt_install_template.sh >> $(INTERNAL_INSTALLER_NAME)
-	@cat $(PWD)/Setup/Linux/$(PACKAGE_NAME) >> $(INTERNAL_INSTALLER_NAME)
-	chmod +x $(INTERNAL_INSTALLER_NAME)
+	@{ \
+		echo "#!/bin/sh"; \
+		echo "VERSION=$(TC_VERSION)"; \
+		echo "PACKAGE_TYPE=tar"; \
+		echo "PACKAGE_NAME=$(PACKAGE_NAME)"; \
+		echo "PACKAGE_START=1107"; \
+		echo "INSTALLER_TYPE=$(INSTALLER_TYPE)"; \
+		cat "$(PWD)/Setup/Linux/veracrypt_install_template.sh" "$(PWD)/Setup/Linux/$(PACKAGE_NAME)"; \
+	} > "$(INTERNAL_INSTALLER_NAME)"
 
 	rm -fr $(PWD)/Setup/Linux/packaging
 	mkdir -p $(PWD)/Setup/Linux/packaging
-	cp $(INTERNAL_INSTALLER_NAME) $(PWD)/Setup/Linux/packaging/.
+	install -m 0755 -t "$(PWD)/Setup/Linux/packaging" "$(INTERNAL_INSTALLER_NAME)"
 	makeself $(PWD)/Setup/Linux/packaging $(PWD)/Setup/Linux/$(INSTALLER_NAME) "VeraCrypt $(TC_VERSION) Installer" ./$(INTERNAL_INSTALLER_NAME)
 
 endif
